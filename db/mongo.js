@@ -7,16 +7,11 @@ db.once('open', function () {
     console.log('were connected!')
 })
 
-const kittySchema = new mongoose.Schema({
+const UsuarioSchema = new mongoose.Schema({
     nombreCompleto: String,
     email: String
 });
 
-const Kitten = mongoose.model('usuarios', kittySchema);
+const Usuario = mongoose.model('usuarios', UsuarioSchema);
 
-Kitten.find(function (err, kittens) {
-    if (err) return console.error(err);
-    console.log(kittens);
-})
-
-module.exports = mongoose
+module.exports = Usuario
