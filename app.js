@@ -5,10 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config();
 const cors = require('cors');
+const jwt = require('jsonwebtoken')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var usuariosRouter = require('./routes/usuarios');
+const usuariosRouter = require('./routes/usuarios');
+const loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -24,9 +26,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+const validate = (req, res, next) => {
+  jwt.verify(req.headers['x-access-token'], process.env.SECRET_KEY, (err, decoded) => {
+    if (err) {
+      res.status(400).json(err.message)
+    } else {
+      // add user id to request
+      req.body.userId = decoded.id
+      next()
+    }
+  })
+}
+
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
-app.use('/usuarios', usuariosRouter);
+app.use('/usuarios', validate, usuariosRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
