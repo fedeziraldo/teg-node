@@ -47,7 +47,7 @@ const socketio = (server) => {
             if (usuariosLogueados[socket.id]) {
                 const {usuario} = usuariosLogueados[socket.id]
                 console.log(texto)
-                socket.to(SIN_SALA).broadcast.emit('texto', `${usuario.nombre}: ${texto}`)
+                socket.to(SIN_SALA).emit('texto', `${usuario.nombre}: ${texto}`)
                 new Mensaje({
                     mensaje: texto,
                     usuario: usuariosLogueados[socket.id].usuario,
