@@ -7,19 +7,19 @@ const bcrypt = require('bcrypt');
         let usu = new Usuario({
             nombre: "fede",
             email: "fede",
-            password: "fede",
+            password: "Fede",
         })
         console.log(await usu.save())
         usu = new Usuario({
             nombre: "diego",
             email: "diego",
-            password: "diego",
+            password: "Diego",
         })
         console.log(await usu.save())
         usu = new Usuario({
             nombre: "rafa",
             email: "rafa",
-            password: "rafa",
+            password: "Rafa",
         })
         console.log(await usu.save())
     } catch (e) {
