@@ -42,7 +42,8 @@ const socketio = (server) => {
                 console.log(texto)
                 socket.broadcast.emit('texto', texto)
                 new Mensaje({
-                    mensaje: texto
+                    mensaje: texto,
+                    usuario: usuariosLogueados[socket.id].usuario,
                 }).save()
             }
         })
