@@ -4,6 +4,7 @@ const Mensaje = require("../db/mensaje")
 const Usuario = require("../db/usuario")
 
 let io;
+const SIN_SALA = 'sin sala'
 
 const usuariosLogueados = {};
 
@@ -26,12 +27,17 @@ const socketio = (server) => {
             try {
                 const decoded = jwt.verify(token, process.env.SECRET_KEY)
                 const usuario = await Usuario.findById(decoded.id).exec()
-                console.log(token, usuario)
-                usuariosLogueados[socket.id] = {
-                    socket,
-                    usuario,
+                if (usuario) {
+                    console.log(token, usuario)
+                    usuariosLogueados[socket.id] = {
+                        socket,
+                        usuario,
+                    }
+                    socket.join(SIN_SALA)
+                    socket.emit('loginCorrecto', usuario)
+                } else {
+                    socket.emit('loginIncorrecto')
                 }
-                socket.emit('loginCorrecto', usuario)
             } catch (e) {
                 socket.emit('loginIncorrecto')
             }
@@ -39,8 +45,9 @@ const socketio = (server) => {
 
         socket.on('texto', texto => {
             if (usuariosLogueados[socket.id]) {
+                const {usuario} = usuariosLogueados[socket.id]
                 console.log(texto)
-                socket.broadcast.emit('texto', texto)
+                socket.to(SIN_SALA).broadcast.emit('texto', `${usuario.nombre}: ${texto}`)
                 new Mensaje({
                     mensaje: texto,
                     usuario: usuariosLogueados[socket.id].usuario,
