@@ -1,0 +1,9 @@
+[
+  { "id": 1, "tipo": "Avión", "valor": ["A"]},
+  { "id": 2, "tipo": "Soldado", "valor": ["S"]},
+  { "id": 3, "tipo": "Ancla", "valor": ["B"]},
+  { "id": 4, "tipo": "Armas", "valor": ["A", "S", "B"]},
+  { "id": 5, "tipo": "Super tarjeta", "valor": ["ABS"]},
+  { "id": 6, "tipo": "Avión ancla", "valor": ["AB"]},
+  { "id": 7, "tipo": "Soldado ancla", "valor": ["BS"]}
+]

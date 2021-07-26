@@ -2,31 +2,6 @@ const Usuario = require('../db/usuario');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
-(async  () => {
-    try {
-        let usu = new Usuario({
-            nombre: "fede",
-            email: "fede",
-            password: "Fede",
-        })
-        console.log(await usu.save())
-        usu = new Usuario({
-            nombre: "diego",
-            email: "diego",
-            password: "Diego",
-        })
-        console.log(await usu.save())
-        usu = new Usuario({
-            nombre: "rafa",
-            email: "rafa",
-            password: "Rafa",
-        })
-        console.log(await usu.save())
-    } catch (e) {
-        console.log(e.message)
-    }
-})()
-
 module.exports = {
     getAll: async function (req, res, next) {
         try {
