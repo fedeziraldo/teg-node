@@ -1,5 +1,5 @@
 const mongodb = require('./mongodb')
-const Schema = mongodb.Schema;
+const {Schema, model} = mongodb;
 
 const cartaGlobalSchema = new Schema({
     tipo: String,
@@ -13,6 +13,6 @@ const cartaGlobalSchema = new Schema({
     color: String
 })
 
-const CartaGlobal = mongodb.model('cartaglobales', cartaGlobalSchema)
+const CartaGlobal = model('cartaglobales', cartaGlobalSchema)
 
 module.exports = CartaGlobal

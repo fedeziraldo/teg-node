@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt')
 const mongodb = require('./mongodb')
+const {Schema, model} = mongodb;
 
-const UsuarioSchema = new mongodb.Schema({
+const UsuarioSchema = new Schema({
     nombre: String,
     email: {type: String, unique: true},
     password: String
@@ -12,6 +13,6 @@ UsuarioSchema.pre('save', function(next){
     next()
 })
 
-const Usuario = mongodb.model('usuarios', UsuarioSchema)
+const Usuario = model('usuarios', UsuarioSchema)
 
 module.exports = Usuario

@@ -1,12 +1,12 @@
 const mongodb = require('./mongodb')
-const Schema = mongodb.Schema;
+const {Schema, model} = mongodb;
 
 const continenteSchema = new Schema({
-    id: Number,
+    numero: {type: Number, unique: true},
     nombre: String,
     fichas: Number,
     escudo: { type: Schema.Types.ObjectId, ref: 'escudos' }
 })
 
-const Continente = mongodb.model('continentes', continenteSchema)
+const Continente = model('continentes', continenteSchema)
 module.exports = Continente

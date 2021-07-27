@@ -1,5 +1,5 @@
 const mongodb = require('./mongodb')
-const Schema = mongodb.Schema;
+const {Schema, model} = mongodb;
 
 const objetivos = [europaAmSur, amNorteOceania6Africa, asiaAmCentral,europaAmSur, 
     amNorteOceania6Africa, asiaAmCentral,europaAmSur, amNorteOceania6Africa, 
@@ -23,7 +23,7 @@ objetivoSchema.methods.cumpleObjetivo = function (jugadorA, jugadorD, paisesDto,
     return objetivos[this.id - 1](jugadorA, jugadorD, paisesDto, continentesDto)
 }
 
-const Objetivo = mongodb.model('objetivos', objetivoSchema)
+const Objetivo = model('objetivos', objetivoSchema)
 module.exports = Objetivo
 
 function europaAmSur(jugadorA, jugadorD, paisesDto, continentesDto) {

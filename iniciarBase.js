@@ -1,13 +1,14 @@
 require('dotenv').config();
 const mongodb = require('./db/mongodb')
 let escudos = require("./escudos.json")
-const paises = require("./paises.json")
+let continentes = require("./continentes.json")
+let paises = require("./paises.json")
 const cartas = require("./cartasGlobales.json")
 const objetivos = require("./objetivos.json")
-let continentes = require("./continentes.json")
 const Usuario = require('./db/usuario')
 const Escudo = require("./db/escudo")
 const Pais = require("./db/pais")
+const Limite = require("./db/limite")
 const Continente = require("./db/continente")
 const Objetivo = require("./db/objetivo")
 const CartaGlobal = require("./db/cartaGlobal");
@@ -41,18 +42,26 @@ const CartaGlobal = require("./db/cartaGlobal");
         })
         escudos = await Escudo.insertMany(escudos)
         continentes.forEach(continente => {
-            continente.escudo = escudos[continente.escudo]
+            continente.escudo = escudos.find(e => e.numero == continente.escudo)
         })
         continentes = await Continente.insertMany(continentes)
 
         paises.forEach(pais => {
-            pais.escudo = escudos[pais.escudo]
-            pais.continente = continentes[pais.continente]
+            pais.escudo = escudos.find(e => e.numero == pais.escudo)
+            pais.continente = continentes.find(c => c.numero == pais.continente)
         })
+        paises = await Pais.insertMany(paises)
+
+        const limites= []
+        for (let pais of paises) {
+            for (let limite of paises) {
+                limites.push({pais, limite})
+            }
+        }
 
         await Promise.all([
             Usuario.insertMany([fede, diego, rafa]),
-            Pais.insertMany(paises),
+            Limite.insertMany(limites),
             CartaGlobal.insertMany(cartas),
             Objetivo.insertMany(objetivos),
         ])

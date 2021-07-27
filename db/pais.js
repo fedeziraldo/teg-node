@@ -1,5 +1,5 @@
 const mongodb = require('./mongodb')
-const Schema = mongodb.Schema;
+const {Schema, model} = mongodb;
 
 const paisSchema = new Schema({
     numero: {type: Number, unique: true},
@@ -29,5 +29,5 @@ paisSchema.methods.distancia = function (pais) {
     throw ("muy lejos")
 }
 
-const Pais = mongodb.model('paises', paisSchema)
+const Pais = model('paises', paisSchema)
 module.exports = Pais
