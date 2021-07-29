@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bcrypt = require('bcrypt');
 const mongodb = require('./db/mongodb')
 let escudos = require("./escudos.json")
 let continentes = require("./continentes.json")
@@ -28,17 +29,17 @@ const CartaGlobal = require("./db/cartaGlobal");
         const fede = new Usuario({
             nombre: "fede",
             email: "fede",
-            password: process.env.PASS_FEDE,
+            password: bcrypt.hashSync(process.env.PASS_FEDE, 10),
         })
         const diego = new Usuario({
             nombre: "diego",
             email: "diego",
-            password: process.env.PASS_DIEGO,
+            password: bcrypt.hashSync(process.env.PASS_DIEGO, 10),
         })
         const rafa = new Usuario({
             nombre: "rafa",
             email: "rafa",
-            password: process.env.PASS_RAFA,
+            password: bcrypt.hashSync(process.env.PASS_RAFA, 10),
         })
         escudos = await Escudo.insertMany(escudos)
         continentes.forEach(continente => {
