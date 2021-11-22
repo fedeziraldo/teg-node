@@ -5,6 +5,7 @@ class Pais {
     constructor() {
         this.fichas = 1
         this.misiles = 0
+        this.limites = []
     }
 
     agregarFichas(fichas) {
@@ -39,6 +40,19 @@ class Pais {
     transferirMisil(paisD) {
         this.usarMisil()
         paisD.agregarMisil()
+    }
+
+    agregarLimite(pais) {
+        this.limites.push(pais)
+        pais.limites.push(this)
+    }
+
+    limita(pais) {
+        return this.limites.includes(pais)
+    }
+
+    atacar() {
+        
     }
 }
 
