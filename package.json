@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start-database": "node ./iniciarBase"
+    "start-database": "node ./startDatabase/startDatabase",
+    "test": "node ./test/tests"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

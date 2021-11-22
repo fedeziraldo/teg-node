@@ -1,0 +1,2 @@
+require('./PaisTest')
+require('./JugadorTest')
