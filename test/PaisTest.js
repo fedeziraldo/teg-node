@@ -1,5 +1,6 @@
 const assert = require('assert');
 const Pais = require('../modelo/Pais')
+const Jugador = require('../modelo/Jugador');
 
 /**
  * 
@@ -153,14 +154,49 @@ const testAtacar = () => {
   )
 
   paisO.agregarFichas(5)
+  paisD.agregarFichas(5)
   assert.throws(() => paisO.atacar(paisD), {
     name: 'Error',
-    message: Pais.NO_LIMITAN,
+    message: Pais.NO_LIMITA,
   }
   )
 
   paisO.agregarLimite(paisD)
 
-  
+  assert.throws(() => paisO.atacar(paisD), {
+    name: 'Error',
+    message: Pais.MISMO_JUGADOR,
+  }
+  )
+
+  paisO.jugador = new Jugador("fede", "blue")
+  paisD.jugador = new Jugador("diego", "yellow")
+
+  paisO.atacar(paisD)
+  assert(paisO.fichas >= 3 && paisO.fichas <= 6)
+  assert(paisD.fichas >= 3 && paisD.fichas <= 6)
+  assert.deepEqual(paisO.fichas + paisD.fichas, 9)
 }
 testAtacar()
+
+/**
+ * 
+ */
+const testCapturarPais = () => {
+  const paisO = new Pais()
+  const paisD = new Pais()
+
+  paisO.jugador = new Jugador("fede", "blue")
+  paisD.jugador = new Jugador("diego", "yellow")
+
+  paisO.agregarFichas(5)
+
+  paisO.agregarLimite(paisD)
+
+  paisO.atacar(paisD)
+
+  if (paisD.jugador == paisO.jugador) {
+    assert.deepEqual(paisD.fichas, 1)
+  }
+}
+testCapturarPais()
