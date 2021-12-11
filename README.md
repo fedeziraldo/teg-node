@@ -14,3 +14,4 @@ JWT
 Bcrypt
 Socket.io
 Mongoose
+Dotenv
