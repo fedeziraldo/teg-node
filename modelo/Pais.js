@@ -8,6 +8,8 @@ class Pais {
         this.fichas = 1
         this.misiles = 0
         this.limites = []
+        this.fichasMoviles = this.fichas
+        this.misilesMoviles = this.misiles
     }
 
     agregarFichas(fichas) {
@@ -35,11 +37,13 @@ class Pais {
     }
 
     transferirFichas(fichas, paisD) {
+        if (this.jugador != paisD.jugador) throw new Error(Pais.NO_MISMO_JUGADOR)
         this.agregarFichas(-fichas)
         paisD.agregarFichas(fichas)
     }
 
     transferirMisil(paisD) {
+        if (this.jugador != paisD.jugador) throw new Error(Pais.NO_MISMO_JUGADOR)
         this.usarMisil()
         paisD.agregarMisil()
     }
@@ -102,6 +106,7 @@ Pais.NO_HAY_MISILES = 'No hay misiles'
 Pais.NO_HAY_SUFUCIENTES_FICHAS = 'No hay suficientes fichas'
 Pais.NO_LIMITA = 'No limita'
 Pais.MISMO_JUGADOR = 'Mismo jugador'
+Pais.NO_MISMO_JUGADOR = 'No son del mismo jugador'
 Pais.DANO_MAXIMO_MISIL = 3
 
 module.exports = Pais

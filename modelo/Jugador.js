@@ -1,3 +1,5 @@
+const sum = (v,acc) => v+acc
+
 class Jugador {
     constructor(nombre, color) {
         this.nombre = nombre
@@ -6,10 +8,7 @@ class Jugador {
         this.tarjetasContinente = []
         this.cantCanjes = 0
         this.paisesCapturadosRonda = 0
-    }
-
-    canjear(tarjetas) {
-
+        this.fichasRestantes = 8
     }
 
     puedeSacarTarjeta() {
@@ -21,13 +20,17 @@ class Jugador {
             if (!this.tarjetas.includes(tarjeta)) throw new Error("Tarjetas son no del jugador")
         }
 
-        const escudos = tarjetas.map(t => t.escudo)
+        const valores = tarjetas.map(t => t.escudo.valor)
 
-        return escudos.map(e => e.valor).reduce((v,acc) => v+acc, 0)
+        return valores.length < 4 && valores.reduce(sum, 0) == 7
     }
 
     getCantFichasCanje() {
         return this.canjes == 0 ? 6 : this.canjes*5
+    }
+
+    cumpleObjetivo(paises) {
+        return paises.map(p => p.jugador == this).length >= 45
     }
 }
 
