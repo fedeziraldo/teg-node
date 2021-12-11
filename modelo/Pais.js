@@ -61,17 +61,19 @@ class Pais {
         const {cantVictorias, cantBatallas} = atacar(this.fichas, pais.fichas)
 
         this.agregarFichas(cantVictorias-cantBatallas)
-        this.capturarPais(cantVictorias, pais)
+        return this.capturarPais(cantVictorias, pais)
     }
 
     capturarPais(cantVictorias, pais) {
         try {
             pais.agregarFichas(-cantVictorias)
+            return false
         } catch (e) {
             // captura
             pais.fichas = 0
             pais.jugador = this.jugador
             this.transferirFichas(1, pais)
+            return true
         }
     }
 

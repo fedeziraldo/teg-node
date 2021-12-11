@@ -172,7 +172,7 @@ const testAtacar = () => {
   paisO.jugador = new Jugador("fede", "blue")
   paisD.jugador = new Jugador("diego", "yellow")
 
-  paisO.atacar(paisD)
+  assert(!paisO.atacar(paisD))
   assert(paisO.fichas >= 3 && paisO.fichas <= 6)
   assert(paisD.fichas >= 3 && paisD.fichas <= 6)
   assert.deepEqual(paisO.fichas + paisD.fichas, 9)
@@ -193,10 +193,11 @@ const testCapturarPais = () => {
 
   paisO.agregarLimite(paisD)
 
-  paisO.atacar(paisD)
-
-  if (paisD.jugador == paisO.jugador) {
+  if (paisO.atacar(paisD)) {
+    assert(paisD.jugador == paisO.jugador)
     assert.deepEqual(paisD.fichas, 1)
+  } else {
+    assert(paisD.jugador != paisO.jugador)
   }
 }
 testCapturarPais()
