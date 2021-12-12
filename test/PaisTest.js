@@ -201,3 +201,17 @@ const testCapturarPais = () => {
   }
 }
 testCapturarPais()
+
+/**
+ * 
+ */
+const testDistancia = () => {
+  const paisO = new Pais()
+  const paisD = new Pais()
+
+  paisO.agregarLimite(paisD)
+
+  assert.deepEqual(paisO.distancia(paisD), 1)
+  assert.deepEqual(paisD.distancia(paisO), 1)
+}
+testDistancia()

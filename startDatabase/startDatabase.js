@@ -1,18 +1,18 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
-const mongodb = require('./db/mongodb')
+const mongodb = require('../db/mongodb')
 let escudos = require("./escudos.json")
 let continentes = require("./continentes.json")
 let paises = require("./paises.json")
 const cartas = require("./cartasGlobales.json")
 const objetivos = require("./objetivos.json")
-const Usuario = require('./db/usuario')
-const Escudo = require("./db/escudo")
-const Pais = require("./db/pais")
-const Limite = require("./db/limite")
-const Continente = require("./db/continente")
-const Objetivo = require("./db/objetivo")
-const CartaGlobal = require("./db/cartaGlobal");
+const Usuario = require('../db/usuario')
+const Escudo = require("../db/escudo")
+const Pais = require("../db/pais")
+const Limite = require("../db/limite")
+const Continente = require("../db/continente")
+const Objetivo = require("../db/objetivo")
+const CartaGlobal = require("../db/cartaGlobal");
 
 
 (async () => {
