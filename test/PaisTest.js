@@ -26,8 +26,7 @@ const testBasicoFichas = () => {
   assert.throws(() => pais.agregarFichas(-2), {
     name: 'Error',
     message: Pais.NO_HAY_SUFUCIENTES_FICHAS,
-  }
-  )
+  })
 }
 testBasicoFichas()
 
@@ -45,8 +44,7 @@ const testBasicoMisiles = () => {
   assert.throws(() => pais.usarMisil(), {
     name: 'Error',
     message: Pais.NO_HAY_MISILES,
-  }
-  )
+  })
 }
 testBasicoMisiles()
 
@@ -64,8 +62,7 @@ const testComprarMisilesFichas = () => {
   assert.throws(() => pais.comprarMisil(), {
     name: 'Error',
     message: Pais.NO_HAY_SUFUCIENTES_FICHAS,
-  }
-  )
+  })
 
   pais.venderMisil()
   assert.deepEqual(pais.fichas, 12)
@@ -74,8 +71,7 @@ const testComprarMisilesFichas = () => {
   assert.throws(() => pais.venderMisil(), {
     name: 'Error',
     message: Pais.NO_HAY_MISILES,
-  }
-  )
+  })
 }
 testComprarMisilesFichas()
 
@@ -92,8 +88,7 @@ const testTransferirFichas = () => {
   assert.throws(() => paisO.transferirFichas(10, paisD), {
     name: 'Error',
     message: Pais.NO_HAY_SUFUCIENTES_FICHAS,
-  }
-  )
+  })
 
   paisO.transferirFichas(5, paisD)
   assert.deepEqual(paisO.fichas, 5)
@@ -121,8 +116,7 @@ const testTransferirMisiles = () => {
   assert.throws(() => paisO.transferirMisil(paisD), {
     name: 'Error',
     message: Pais.NO_HAY_MISILES,
-  }
-  )
+  })
 }
 testTransferirMisiles()
 
@@ -150,24 +144,21 @@ const testAtacar = () => {
   assert.throws(() => paisO.atacar(paisD), {
     name: 'Error',
     message: Pais.NO_HAY_SUFUCIENTES_FICHAS,
-  }
-  )
+  })
 
   paisO.agregarFichas(5)
   paisD.agregarFichas(5)
   assert.throws(() => paisO.atacar(paisD), {
     name: 'Error',
     message: Pais.NO_LIMITA,
-  }
-  )
+  })
 
   paisO.agregarLimite(paisD)
 
   assert.throws(() => paisO.atacar(paisD), {
     name: 'Error',
     message: Pais.MISMO_JUGADOR,
-  }
-  )
+  })
 
   paisO.jugador = new Jugador("fede", "blue")
   paisD.jugador = new Jugador("diego", "yellow")
@@ -215,3 +206,17 @@ const testDistancia = () => {
   assert.deepEqual(paisD.distancia(paisO), 1)
 }
 testDistancia()
+
+/**
+ * 
+ */
+ const testBloqueado = () => {
+  const paisO = new Pais()
+  const paisD = new Pais()
+
+  paisO.agregarLimite(paisD)
+
+  assert(!paisO.estaBloqueado())
+  assert(!paisD.estaBloqueado())
+}
+testBloqueado()

@@ -42,6 +42,12 @@ class Turno {
                 turno++
                 return
             }
+            if (this.fase4) {
+                this.fase4 = false
+                this.faseJuego = true
+                turno++
+                return
+            }
             if (this.faseReagrupar) {
                 this.faseReagrupar = false
                 this.faseRefuerzos = true

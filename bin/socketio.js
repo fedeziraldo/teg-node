@@ -2,6 +2,7 @@ const { Server } = require("socket.io")
 const jwt = require('jsonwebtoken')
 const Mensaje = require("../db/mensaje")
 const Usuario = require("../db/usuario")
+const Jugador = require("./Jugador")
 
 let io;
 const SIN_SALA = 'sin sala'
@@ -48,17 +49,11 @@ const socketio = (server) => {
             try {
                 const decoded = jwt.verify(token, process.env.SECRET_KEY)
                 const usuario = await Usuario.findById(decoded.id).exec()
-                if (usuario) {
-                    console.log(token, usuario)
-                    usuariosLogueados[socket.id] = {
-                        socket,
-                        usuario,
-                    }
-                    socket.join(SIN_SALA)
-                    socket.emit('loginCorrecto', usuario)
-                } else {
-                    socket.emit('loginIncorrecto')
-                }
+                console.log(usuario)
+                if (!usuario) socket.emit('loginIncorrecto')
+                usuariosLogueados[socket.id] = new Jugador(socket, usuario, SIN_SALA)
+                socket.join(SIN_SALA)
+                socket.emit('loginCorrecto', {usuario, salas: Object.keys(salas), usuarios: Object.keys(usuariosLogueados)})
             } catch (e) {
                 socket.emit('loginIncorrecto')
             }
@@ -66,24 +61,27 @@ const socketio = (server) => {
 
         socket.on('texto', texto => {
             if (usuariosLogueados[socket.id]) {
-                const { usuario } = usuariosLogueados[socket.id]
+                const jugador = usuariosLogueados[socket.id]
                 console.log(texto)
-                socket.to(SIN_SALA).emit('texto', `${usuario.nombre}: ${texto}`)
+                socket.to(jugador.nombreSala).emit('texto', `${usuario.nombre}: ${texto}`)
                 new Mensaje({
                     mensaje: texto,
                     usuario: usuariosLogueados[socket.id].usuario,
                 }).save()
+            } else {
+                socket.emit('loginIncorrecto') 
             }
         })
 
         socket.on('crearSala', () => {
             if (usuariosLogueados[socket.id]) {
+                const jugador = usuariosLogueados[socket.id]
                 if (!salas[socket.id]) {
-                    const { usuario } = usuariosLogueados[socket.id]
                     salas[socket.id] = {
-                        creador: usuario,
+                        creador: jugador,
                         participantes: []
                     }
+                    jugador.nombreSala = socket.id
                     socket.leave(SIN_SALA)
                     socket.join(socket.id)
                     socket.emit
@@ -94,10 +92,11 @@ const socketio = (server) => {
 
         socket.on('unirseSala', sala => {
             if (usuariosLogueados[socket.id]) {
-                if (salas[sala]) {
-                    salas[socket.id].participantes.push(socket)
+                if (!salas[sala]) {
+                    salas[sala].participantes.push(socket)
+                    jugador.nombreSala = sala
                     socket.leave(SIN_SALA)
-                    socket.join(socket.id)
+                    socket.join(sala)
                     console.log(`usuario ${usuariosLogueados[socket.id].usuario._id} se unio a sala ${sala}`)
                 }
             }
@@ -105,9 +104,10 @@ const socketio = (server) => {
 
         socket.on('salirSala', sala => {
             if (usuariosLogueados[socket.id]) {
+                const jugador = usuariosLogueados[socket.id]
                 if (salas[sala]) {
                     salas[sala].participantes.splice(socket, 1)
-                    socket.leave(socket.id)
+                    socket.leave(jugador.nombreSala)
                     socket.join(SIN_SALA)
                     console.log(`usuario ${usuariosLogueados[socket.id].usuario._id} salio de la sala ${sala}`)
                 }

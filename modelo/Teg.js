@@ -20,7 +20,7 @@ class Teg {
 
     accionSimple(jugador, pais) {
         if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
-        if (!this.turno.fase8 && !this.turno.fase4 && !this.turno.faseRefuerzos) ;//ver detalle;
+        if (!this.turno.fase8 && !this.turno.fase4 && !this.turno.faseRefuerzos) ;//ver detalle pais;
         if (pais.jugador != jugador) throw new Error("no es tu pais")
         if (jugador.fichasRestantes == 0) throw new Error("no hay fichas")
         pais.agregarFichas(1)
@@ -30,7 +30,7 @@ class Teg {
 
     accionDoble(jugador, paisO, paisD) {
         if (this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
-        if (pais.jugador != jugador) throw new Error("no es tu pais")
+        if (paisO.jugador != jugador) throw new Error("no es tu pais")
         if (this.turno.faseJuego) {
             if (paisO.atacar(paisD)) jugador.cumpleObjetivo()
         }
