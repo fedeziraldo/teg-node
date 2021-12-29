@@ -19,3 +19,9 @@ Dotenv
 
 # Para test automatizados
 se utiliza Assert nativo de NodeJs
+
+# Documentacion
+https://expressjs.com/es/
+https://www.npmjs.com/
+https://socket.io/
+https://mongoosejs.com/
