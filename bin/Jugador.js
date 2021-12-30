@@ -1,9 +1,9 @@
-class Usuario {
-    constructor(socket, usuario, nombreSala) {
-        this.socket = socket
+class Jugador {
+    constructor(socketId, usuario, nombreSala) {
+        this.socketId = socketId
         this.usuario = usuario
         this.nombreSala = nombreSala
     }
 }
 
-module.exports = Usuario
+module.exports = Jugador
