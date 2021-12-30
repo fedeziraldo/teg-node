@@ -9,49 +9,52 @@ const SIN_SALA = 'sin sala'
 
 const jugadores = {}
 const salas = {}
+const juegos = {}
 
 const salirSala = (socket, jugador) => {
     if (salas[jugador.nombreSala]) {
         salas[jugador.nombreSala].participantes.splice(jugador, 1)
-        console.log(`usuario ${jugador.usuario._id} salio de la sala ${jugador.nombreSala}`)
+        console.log(`usuario ${jugador.usuario.id} salio de la sala ${jugador.nombreSala}`)
         socket.leave(jugador.nombreSala)
         socket.join(SIN_SALA)
         jugador.nombreSala = SIN_SALA
     }
 }
 
-const eliminarSala = (io, jugador) => {
+const eliminarSala = (ioSala, jugador) => {
     const sala = salas[jugador.nombreSala]
     if (sala) {
         delete salas[jugador.nombreSala]
         sala.participantes.forEach(j => {
-            const socket = io.sockets.sockets[j.socketId]
+            const socket = ioSala.sockets.get(j.socketId)
             if (socket){
                 socket.leave(socket.id)
                 socket.join(SIN_SALA)
             }
             j.nombreSala = SIN_SALA
         })
-        io.emit("salas", Object.keys(salas))
-        console.log(`usuario ${jugador.usuario._id} elimino su sala`)
+        ioSala.emit("salas", Object.keys(salas))
+        console.log(`usuario ${jugador.usuario.id} elimino su sala`)
     }
 }
 
 const socketio = (server) => {
     io = new Server(server, { cors: { origin: '*' } })
 
-    io.on('connection', socket => {
+    const ioSala = io.of('/sala')
+
+    ioSala.on('connection', socket => {
         console.log(`${socket.id} connected`)
 
         socket.on('disconnect', () => {
             const jugador = jugadores[socket.id]
             if (jugador) {
-                console.log(`${jugador.usuario._id} disconnected`)
+                console.log(`${jugador.usuario.id} disconnected`)
                 delete jugadores[socket.id]
-                io.emit("jugadores", Object.keys(jugadores).map(j => jugadores[j].usuario._id))
+                ioSala.emit("jugadores", Object.keys(jugadores).map(j => jugadores[j].usuario.id))
 
                 // eliminar sala
-                eliminarSala(io, jugador)
+                eliminarSala(ioSala, jugador)
                 salirSala(socket, jugador)
             } else {
                 console.log(`${socket.id} disconnected`)
@@ -71,7 +74,7 @@ const socketio = (server) => {
                     socket.join(SIN_SALA)
                     socket.emit('loginCorrecto', usuario)
                     socket.emit("salas", Object.keys(salas))
-                    io.emit("usuarios", Object.keys(jugadores).map(j => jugadores[j].usuario._id))
+                    ioSala.emit("usuarios", Object.keys(jugadores).map(j => jugadores[j].usuario.id))
                 }
             } catch (e) {
                 socket.emit('loginIncorrecto')
@@ -82,7 +85,7 @@ const socketio = (server) => {
             const jugador = jugadores[socket.id]
             if (jugador) {
                 console.log(texto)
-                io.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario._id}: ${texto}`)
+                ioSala.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario.id}: ${texto}`)
                 new Mensaje({
                     mensaje: texto,
                     usuario: jugador.usuario,
@@ -95,16 +98,16 @@ const socketio = (server) => {
         socket.on('crearSala', () => {
             const jugador = jugadores[socket.id]
             if (jugador) {
-                if (!salas[jugador.usuario._id]) {
-                    salas[jugador.usuario._id] = {
+                if (!salas[jugador.usuario.id]) {
+                    salas[jugador.usuario.id] = {
                         creador: jugador,
                         participantes: [jugador]
                     }
-                    jugador.nombreSala = jugador.usuario._id
+                    jugador.nombreSala = jugador.usuario.id
                     socket.leave(SIN_SALA)
-                    socket.join(jugador.usuario._id)
-                    io.emit("salas", Object.keys(salas))
-                    console.log(`usuario ${jugador.usuario._id} creo sala`)
+                    socket.join(jugador.usuario.id)
+                    ioSala.emit("salas", Object.keys(salas))
+                    console.log(`usuario ${jugador.usuario.id} creo sala`)
                 }
             } else {
                 socket.emit('loginIncorrecto')
@@ -119,8 +122,8 @@ const socketio = (server) => {
                     jugador.nombreSala = sala
                     socket.leave(SIN_SALA)
                     socket.join(sala)
-                    io.emit("salas", Object.keys(salas))
-                    console.log(`usuario ${jugador.usuario._id} se unio a sala ${sala}`)
+                    ioSala.emit("salas", Object.keys(salas))
+                    console.log(`usuario ${jugador.usuario.id} se unio a sala ${sala}`)
                 }
             } else {
                 socket.emit('loginIncorrecto')
@@ -139,7 +142,61 @@ const socketio = (server) => {
         socket.on('eliminarSala', () => {
             const jugador = jugadores[socket.id]
             if (jugador) {
-                eliminarSala(io, jugador)
+                eliminarSala(ioSala, jugador)
+            } else {
+                socket.emit('loginIncorrecto')
+            }
+        })
+
+        socket.on('iniciarJuego', () => {
+            const jugador = jugadores[socket.id]
+            if (jugador) {
+                ioSala.to(jugador.nombreSala).emit('iniciarJuego')
+            } else {
+                socket.emit('loginIncorrecto')
+            }
+        })
+    });
+
+    const ioMapa = io.of('/mapa')
+
+    ioMapa.on('connection', socket => {
+        console.log(`${socket.id} connected`)
+
+        socket.on('disconnect', () => {
+            console.log(`${socket.id} disconnected`)   
+        })
+
+        socket.on('validacion', async token => {
+            console.log(token)
+            try {
+                const decoded = jwt.verify(token, process.env.SECRET_KEY)
+                const usuario = await Usuario.findById(decoded.id).exec()
+                console.log(usuario)
+                if (!usuario) {
+                    socket.emit('loginIncorrecto')
+                } else {
+                    if (Object.keys(salas).includes(usuario.id)){
+                        
+                    }
+                    jugadores[socket.id] = new Jugador(socket.id, usuario, SIN_SALA)
+                    socket.join(SIN_SALA)
+                    socket.emit('loginCorrecto', usuario)
+                }
+            } catch (e) {
+                socket.emit('loginIncorrecto')
+            }
+        })
+
+        socket.on('texto', texto => {
+            const jugador = jugadores[socket.id]
+            if (jugador) {
+                console.log(texto)
+                ioMapa.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario.id}: ${texto}`)
+                new Mensaje({
+                    mensaje: texto,
+                    usuario: jugador.usuario,
+                }).save()
             } else {
                 socket.emit('loginIncorrecto')
             }
