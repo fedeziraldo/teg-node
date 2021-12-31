@@ -7,13 +7,15 @@ class Teg {
     constructor(jugadores) {
         this.jugadores = jugadores
         this.turno = new Turno()
-        this.paises = []//convertToModel(pais.find())
-        this.cartas = []//convertToModel(cartas.find())
+        this.paises = []
+        this.cartas = []
         this.cartaActual = this.cartas[0]
         this.conectados = 0
     }
 
-    iniciar() {
+    async iniciar() {
+        this.paises = await pais.find()
+        this.cartas = await cartas.find()
         for (let i = 0; i < this.paises.length; i++) {
             this.paises[i].jugador = this.jugadores[i % this.jugadores.lenth]
         }
