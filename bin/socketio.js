@@ -207,6 +207,7 @@ const socketio = (server) => {
                         juego.conectados++
                         if (juego.conectados == juego.jugadores.length){
                             ioMapa.to(jugador.nombreSala).emit("iniciarJuego")
+                            juego.iniciar()
                         }
                     }
                 }
