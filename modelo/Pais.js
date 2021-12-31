@@ -4,12 +4,14 @@ const {atacar} = require('./Ataque')
  * 
  */
 class Pais {
-    constructor() {
+    constructor(nombre, continente) {
         this.fichas = 1
         this.misiles = 0
         this.limites = []
         this.fichasMoviles = this.fichas
         this.misilesMoviles = this.misiles
+        this.nombre = nombre
+        this.continente = continente
     }
 
     agregarFichas(fichas) {
@@ -99,6 +101,20 @@ class Pais {
         pais.agregarFichas(-danoMisil)
         this.usarMisil()
     }
+
+    estaBloqueado() {
+        const jugadorBloqueante = this.limites[0].jugador
+        if (this.limites.length < 3 || this.jugador == jugadorBloqueante) {
+            return false
+        }
+        for (let limite of this.limites) {
+            if (limite.fichas < 2 || limite.jugador != jugadorBloqueante) {
+                return false
+            }
+        }
+        return true
+    }
+
 }
 
 Pais.CAMBIO_MISIL_FICHAS = 6
