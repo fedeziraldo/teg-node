@@ -4,14 +4,13 @@ const {atacar} = require('./Ataque')
  * 
  */
 class Pais {
-    constructor(nombre, continente) {
+    constructor(pais) {
+        this.pais = pais
         this.fichas = 1
         this.misiles = 0
         this.limites = []
         this.fichasMoviles = this.fichas
         this.misilesMoviles = this.misiles
-        this.nombre = nombre
-        this.continente = continente
     }
 
     agregarFichas(fichas) {

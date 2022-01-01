@@ -1,6 +1,7 @@
 const Turno = require("./Turno")
 const pais = require("../db/pais")
 const cartas = require("../db/cartaGlobal")
+const Pais = require("../modelo/Pais")
 
 class Teg {
 
@@ -15,9 +16,10 @@ class Teg {
 
     async iniciar() {
         this.paises = await pais.find()
+        this.paises = this.paises.map(p => new Pais(p))
         this.cartas = await cartas.find()
         for (let i = 0; i < this.paises.length; i++) {
-            this.paises[i].jugador = this.jugadores[i % this.jugadores.lenth]
+            this.paises[i].jugador = this.jugadores[i % this.jugadores.length]
         }
     }
 

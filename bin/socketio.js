@@ -169,8 +169,11 @@ const socketio = (server) => {
             if (jugador) {
                 const sala = salas[jugador.nombreSala]
                 if (sala) {
+                    let i = 0
                     for (let part of sala.participantes) {
                         part.socketId = null
+                        part.numero = i
+                        i++
                     }
                     juegos[jugador.nombreSala] = new Teg(sala.participantes)
                     ioSala.to(jugador.nombreSala).emit('iniciarJuego')
@@ -206,8 +209,9 @@ const socketio = (server) => {
                     if (juego) {
                         juego.conectados++
                         if (juego.conectados == juego.jugadores.length){
-                            ioMapa.to(jugador.nombreSala).emit("iniciarJuego")
-                            juego.iniciar()
+                            await juego.iniciar()
+                            ioMapa.to(jugador.nombreSala).emit("iniciarJuego", juego)
+
                         }
                     }
                 }
