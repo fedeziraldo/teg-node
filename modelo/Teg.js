@@ -1,6 +1,7 @@
 const Turno = require("./Turno")
 const pais = require("../db/pais")
 const cartas = require("../db/cartaGlobal")
+const Pais = require("../modelo/Pais")
 
 class Teg {
 
@@ -15,13 +16,15 @@ class Teg {
 
     async iniciar() {
         this.paises = await pais.find()
+        this.paises = this.paises.map(p => new Pais(p))
         this.cartas = await cartas.find()
         for (let i = 0; i < this.paises.length; i++) {
-            this.paises[i].jugador = this.jugadores[i % this.jugadores.lenth]
+            this.paises[i].jugador = this.jugadores[i % this.jugadores.length]
         }
     }
 
-    accionSimple(jugador, pais) {
+    accionSimple(jugador, numeroPais) {
+        const pais = this.paises[numeroPais-1]
         if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (!this.turno.fase8 && !this.turno.fase4 && !this.turno.faseRefuerzos) ;//ver detalle pais;
         if (pais.jugador != jugador) throw new Error("no es tu pais")
@@ -31,7 +34,9 @@ class Teg {
         
     }
 
-    accionDoble(jugador, paisO, paisD) {
+    accionDoble(jugador, numeroPaisO, numeroPaisD) {
+        const paisO = this.paises[numeroPaisO-1]
+        const paisD = this.paises[numeroPaisD-1]
         if (this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (paisO.jugador != jugador) throw new Error("no es tu pais")
         if (this.turno.faseJuego) {

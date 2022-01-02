@@ -3,6 +3,7 @@ class Jugador {
         this.socketId = socketId
         this.usuario = usuario
         this.nombreSala = nombreSala
+        this.numero = 0
     }
 }
 
