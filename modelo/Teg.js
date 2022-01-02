@@ -23,7 +23,8 @@ class Teg {
         }
     }
 
-    accionSimple(jugador, pais) {
+    accionSimple(jugador, numeroPais) {
+        const pais = this.paises[numeroPais-1]
         if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (!this.turno.fase8 && !this.turno.fase4 && !this.turno.faseRefuerzos) ;//ver detalle pais;
         if (pais.jugador != jugador) throw new Error("no es tu pais")
@@ -33,7 +34,9 @@ class Teg {
         
     }
 
-    accionDoble(jugador, paisO, paisD) {
+    accionDoble(jugador, numeroPaisO, numeroPaisD) {
+        const paisO = this.paises[numeroPaisO-1]
+        const paisD = this.paises[numeroPaisD-1]
         if (this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (paisO.jugador != jugador) throw new Error("no es tu pais")
         if (this.turno.faseJuego) {
