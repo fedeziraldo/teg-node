@@ -229,7 +229,7 @@ const socketio = (server) => {
             try {
                 juego.accionSimple(jugador, numeroPais)
             } catch (e) {
-                socket.emit('jugadaInvalida', e)
+                socket.emit('jugadaInvalida', e.message)
             }
         })
 
