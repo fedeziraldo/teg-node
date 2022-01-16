@@ -1,9 +1,11 @@
 const sum = (v,acc) => v+acc
 
 class Jugador {
-    constructor(nombre, color) {
+    constructor(nombre, numero, nombreSala, socketId) {
         this.nombre = nombre
-        this.color = color
+        this.numero = numero
+        this.nombreSala = nombreSala
+        this.socketId = socketId
         this.tarjetasPais = []
         this.tarjetasContinente = []
         this.cantCanjes = 0

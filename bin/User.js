@@ -1,4 +1,4 @@
-class Jugador {
+class User {
     constructor(socketId, usuario, nombreSala) {
         this.socketId = socketId
         this.usuario = usuario
@@ -7,4 +7,4 @@ class Jugador {
     }
 }
 
-module.exports = Jugador
+module.exports = User
