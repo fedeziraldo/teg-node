@@ -23,21 +23,25 @@ class Teg {
         }
     }
 
-    accionSimple(jugador, numeroPais) {
+    accionSimple(jugador, numeroPais, misil) {
         const pais = this.paises[numeroPais-1]
         if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
-        if (!this.turno.fase8 && !this.turno.fase4 && !this.turno.faseRefuerzos) ;//ver detalle pais;
+        if (!this.turno.fase8 && !this.turno.fase4 && !this.turno.faseRefuerzos) throw new Error("no se puede hacer eso")
         if (pais.jugador != jugador) throw new Error("no es tu pais")
-        if (jugador.fichasRestantes == 0) throw new Error("no hay fichas")
-        pais.agregarFichas(1)
-        jugador.fichasRestantes--
+        if (misil) {
+            pais.comprarMisil()
+        } else {
+            if (jugador.fichasRestantes == 0) throw new Error("no hay fichas")
+            pais.agregarFichas(1)
+            jugador.fichasRestantes--
+        }
         
     }
 
     accionDoble(jugador, numeroPaisO, numeroPaisD) {
         const paisO = this.paises[numeroPaisO-1]
         const paisD = this.paises[numeroPaisD-1]
-        if (this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
+        if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (paisO.jugador != jugador) throw new Error("no es tu pais")
         if (this.turno.faseJuego) {
             if (paisO.atacar(paisD)) jugador.cumpleObjetivo()
@@ -48,15 +52,20 @@ class Teg {
     }
 
     accionCanje(jugador, tarjetas) {
-        if (this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
+        if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (!jugador.puedeCanjear(tarjetas)) throw new Error("no se puede hacer el canje")
         if (!this.turno.faseRefuerzos) throw new Error("no se puede hacer el canje ahora")
         jugador.fichasRestantes += jugador.getCantFichasCanje()
     }
 
     accionTerminarTurno(jugador) {
-        if (this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
-        this.turno.terminarTurno(this.jugadores)
+        if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
+        this.turno.avanzarTurno(this.jugadores)
+        if (this.turno.fase4) {
+            jugador.fichasRestantes = 4
+        } else if (this.turno.faseRefuerzos) {
+            jugador.fichasRestantes = Math.floor(this.paises.filter(p => p.jugador == jugador).length / 2)
+        }
     }
 }
 

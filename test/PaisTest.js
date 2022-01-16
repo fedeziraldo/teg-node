@@ -160,8 +160,8 @@ const testAtacar = () => {
     message: Pais.MISMO_JUGADOR,
   })
 
-  paisO.jugador = new Jugador("fede", "blue")
-  paisD.jugador = new Jugador("diego", "yellow")
+  paisO.jugador = new Jugador("fede", 0)
+  paisD.jugador = new Jugador("diego", 1)
 
   assert(!paisO.atacar(paisD))
   assert(paisO.fichas >= 3 && paisO.fichas <= 6)
@@ -177,8 +177,8 @@ const testCapturarPais = () => {
   const paisO = new Pais()
   const paisD = new Pais()
 
-  paisO.jugador = new Jugador("fede", "blue")
-  paisD.jugador = new Jugador("diego", "yellow")
+  paisO.jugador = new Jugador("fede", 0)
+  paisD.jugador = new Jugador("diego", 1)
 
   paisO.agregarFichas(5)
 

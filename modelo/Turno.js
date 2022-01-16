@@ -25,7 +25,7 @@ class Turno {
         if (!ultimo && this.faseReagrupar) {
             this.faseReagrupar = false
             this.faseJuego = true
-            turno++
+            this.turno++
             return
         }
 
@@ -33,36 +33,36 @@ class Turno {
             if (this.faseInicial) {
                 this.faseInicial = false
                 this.fase8 = true
-                turno++
+                this.turno++
                 return
             }
             if (this.fase8) {
                 this.fase8 = false
                 this.fase4 = true
-                turno++
+                this.turno++
                 return
             }
             if (this.fase4) {
                 this.fase4 = false
                 this.faseJuego = true
-                turno++
+                this.turno++
                 return
             }
             if (this.faseReagrupar) {
                 this.faseReagrupar = false
                 this.faseRefuerzos = true
-                turno++
+                this.turno++
                 return
             }
             if (this.faseRefuerzos) {
                 this.faseRefuerzos = false
                 this.faseJuego = true
-                turno++
+                this.turno++
                 jugadores.push(jugadores.unshift())
                 return
             }
         }
-        turno++
+        this.turno++
 
     }
 

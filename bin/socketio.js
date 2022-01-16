@@ -2,9 +2,10 @@ const { Server } = require("socket.io")
 const jwt = require('jsonwebtoken')
 const Mensaje = require("../db/mensaje")
 const Usuario = require("../db/usuario")
-const Jugador = require("./Jugador")
+const User = require("./User")
 const Sala = require("./Sala")
 const Teg = require("../modelo/Teg")
+const Jugador = require("../modelo/Jugador")
 
 let io;
 const SIN_SALA = 'sin sala'
@@ -17,7 +18,7 @@ const juegos = {}
 const salirSala = (socket, jugador, ioSala) => {
     if (salas[jugador.nombreSala]) {
         salas[jugador.nombreSala].participantes.splice(jugador, 1)
-        console.log(`usuario ${jugador.usuario.id} salio de la sala ${jugador.nombreSala}`)
+        console.log(`usuario ${jugador.usuario.email} salio de la sala ${jugador.nombreSala}`)
         socket.leave(jugador.nombreSala)
         socket.join(SIN_SALA)
         jugador.nombreSala = SIN_SALA
@@ -40,13 +41,13 @@ const eliminarSala = (ioSala, jugador) => {
             }
         })
         ioSala.emit("salas", Object.keys(salas))
-        console.log(`usuario ${jugador.usuario.id} elimino su sala`)
+        console.log(`usuario ${jugador.usuario.email} elimino su sala`)
     }
 }
 
 const encontrarJugadorJuego = (socket, usuario) => {
     for (let juego in juegos) {
-        const jugador = juegos[juego].jugadores.find(j => j.usuario.id === usuario.id)
+        const jugador = juegos[juego].jugadores.find(j => j.nombre === usuario.email)
         if (jugador) {
             jugador.socketId = socket.id
             socket.join(jugador.nombreSala)
@@ -66,9 +67,9 @@ const socketio = (server) => {
         socket.on('disconnect', () => {
             const jugador = jugadoresSala[socket.id]
             if (jugador) {
-                console.log(`${jugador.usuario.id} disconnected`)
+                console.log(`${jugador.usuario.email} disconnected`)
                 delete jugadoresSala[socket.id]
-                ioSala.emit("jugadores", Object.keys(jugadoresSala).map(j => jugadoresSala[j].usuario.id))
+                ioSala.emit("jugadores", Object.keys(jugadoresSala).map(j => jugadoresSala[j].usuario.email))
 
                 // eliminar sala
                 eliminarSala(ioSala, jugador)
@@ -87,12 +88,12 @@ const socketio = (server) => {
                 if (!usuario) {
                     socket.emit('loginIncorrecto')
                 } else {
-                    const jugador = new Jugador(socket.id, usuario, SIN_SALA)
-                    jugadoresSala[socket.id] = jugador
+                    const user = new User(socket.id, usuario, SIN_SALA)
+                    jugadoresSala[socket.id] = user
                     socket.join(SIN_SALA)
-                    socket.emit('loginCorrecto', jugador)
+                    socket.emit('loginCorrecto', user)
                     socket.emit("salas", Object.keys(salas))
-                    ioSala.emit("usuarios", Object.keys(jugadoresSala).map(j => jugadoresSala[j].usuario.id))
+                    ioSala.emit("usuarios", Object.keys(jugadoresSala).map(j => jugadoresSala[j].usuario.email))
                 }
             } catch (e) {
                 socket.emit('loginIncorrecto')
@@ -103,7 +104,7 @@ const socketio = (server) => {
             const jugador = jugadoresSala[socket.id]
             if (jugador) {
                 console.log(texto)
-                ioSala.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario.id}: ${texto}`)
+                ioSala.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario.email}: ${texto}`)
                 new Mensaje({
                     mensaje: texto,
                     usuario: jugador.usuario,
@@ -117,13 +118,13 @@ const socketio = (server) => {
             const jugador = jugadoresSala[socket.id]
             if (jugador) {
                 if (!salas[jugador.usuario.id]) {
-                    salas[jugador.usuario.id] = new Sala(jugador, [jugador])
-                    jugador.nombreSala = jugador.usuario.id
+                    salas[jugador.usuario.email] = new Sala(jugador, [jugador])
+                    jugador.nombreSala = jugador.usuario.email
                     socket.leave(SIN_SALA)
-                    socket.join(jugador.usuario.id)
+                    socket.join(jugador.usuario.email)
                     ioSala.emit("salas", Object.keys(salas))
                     socket.emit("jugador", jugador)
-                    console.log(`usuario ${jugador.usuario.id} creo sala`)
+                    console.log(`usuario ${jugador.usuario.email} creo sala`)
                 }
             } else {
                 socket.emit('loginIncorrecto')
@@ -140,7 +141,7 @@ const socketio = (server) => {
                     socket.join(sala)
                     ioSala.emit("salas", Object.keys(salas))
                     socket.emit("jugador", jugador)
-                    console.log(`usuario ${jugador.usuario.id} se unio a sala ${sala}`)
+                    console.log(`usuario ${jugador.usuario.email} se unio a sala ${sala}`)
                 }
             } else {
                 socket.emit('loginIncorrecto')
@@ -176,7 +177,8 @@ const socketio = (server) => {
                         part.numero = i
                         i++
                     }
-                    juegos[jugador.nombreSala] = new Teg(sala.participantes)
+                    const jugadores = sala.participantes.map(p => new Jugador(p.usuario.email, p.numero, p.nombreSala, socket.id))
+                    juegos[jugador.nombreSala] = new Teg(jugadores)
                     ioSala.to(jugador.nombreSala).emit('iniciarJuego')
                 }
             } else {
@@ -191,7 +193,18 @@ const socketio = (server) => {
         console.log(`${socket.id} connected`)
 
         socket.on('disconnect', () => {
-            console.log(`${socket.id} disconnected`)   
+            const jugador = jugadoresMapa[socket.id]
+            if (jugador) {
+                console.log(`${jugador.nombre} disconnected`)
+                const juego = juegos[jugador.nombreSala]
+                for (let j of juego.jugadores){
+                    delete jugadoresMapa[j.socketId]
+                }
+                delete juegos[jugador.nombreSala]
+                ioSala.to(jugador.nombreSala).emit('jugadaInvalida', "Salio")
+            } else {
+                console.log(`${socket.id} disconnected`)
+            }
         })
 
         socket.on('validacion', async token => {
@@ -223,11 +236,13 @@ const socketio = (server) => {
             }
         })
 
-        socket.on('accionSimple', numeroPais => {
+        socket.on('accionSimple', (numeroPais, misil) => {
             const jugador = jugadoresMapa[socket.id]
-            const juego = juegos[jugador.nombreSala]
             try {
-                juego.accionSimple(jugador, numeroPais)
+                const juego = juegos[jugador.nombreSala]
+                juego.accionSimple(jugador, numeroPais, misil)
+                socket.emit('loginCorrecto', jugador)
+                ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
                 socket.emit('jugadaInvalida', e.message)
             }
@@ -235,21 +250,23 @@ const socketio = (server) => {
 
         socket.on('accionDoble', (numeroPaisO, numeroPaisD) => {
             const jugador = jugadoresMapa[socket.id]
-            const juego = juegos[jugador.nombreSala]
             try {
-                juego.accionDoble(accionDoble, numeroPaisO, numeroPaisD)
+                const juego = juegos[jugador.nombreSala]
+                juego.accionDoble(jugador, numeroPaisO, numeroPaisD)
+                ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
-                socket.emit('jugadaInvalida', e)
+                socket.emit('jugadaInvalida', e.message)
             }
         })
 
         socket.on('accionTerminarTurno', () => {
             const jugador = jugadoresMapa[socket.id]
-            const juego = juegos[jugador.nombreSala]
             try {
+                const juego = juegos[jugador.nombreSala]
                 juego.accionTerminarTurno(jugador)
+                ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
-                socket.emit('jugadaInvalida', e)
+                socket.emit('jugadaInvalida', e.message)
             }
         })
 
@@ -257,7 +274,7 @@ const socketio = (server) => {
             const jugador = jugadoresSala[socket.id]
             if (jugador) {
                 console.log(texto)
-                ioMapa.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario.id}: ${texto}`)
+                ioMapa.to(jugador.nombreSala).emit('texto', `${jugador.nombreSala} ${jugador.usuario.email}: ${texto}`)
                 new Mensaje({
                     mensaje: texto,
                     usuario: jugador.usuario,
