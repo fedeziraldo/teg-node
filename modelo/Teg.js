@@ -11,7 +11,6 @@ class Teg {
         this.paises = []
         this.cartas = []
         this.cartaActual = this.cartas[0]
-        this.conectados = 0
     }
 
     async iniciar() {

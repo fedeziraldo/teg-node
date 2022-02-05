@@ -41,6 +41,11 @@ const CartaGlobal = require("../db/cartaGlobal");
             email: "rafa",
             password: bcrypt.hashSync(process.env.PASS_RAFA, 10),
         })
+        const negro = new Usuario({
+            nombre: "negro",
+            email: "negro",
+            password: bcrypt.hashSync(process.env.PASS_NEGRO, 10),
+        })
         escudos = await Escudo.insertMany(escudos)
         continentes.forEach(continente => {
             continente.escudo = escudos.find(e => e.numero == continente.escudo)
@@ -61,7 +66,7 @@ const CartaGlobal = require("../db/cartaGlobal");
         }
 
         await Promise.all([
-            Usuario.insertMany([fede, diego, rafa]),
+            Usuario.insertMany([fede, diego, rafa, negro]),
             Limite.insertMany(limites),
             CartaGlobal.insertMany(cartas),
             Objetivo.insertMany(objetivos),
