@@ -1,25 +1,60 @@
 const Turno = require("./Turno")
+require("../db/escudo")
 const pais = require("../db/pais")
-const cartas = require("../db/cartaGlobal")
+const continente = require("../db/continente")
+const cartasGlobal = require("../db/cartaGlobal")
+const limite = require("../db/limite")
+const objetivo = require("../db/objetivo")
 const Pais = require("../modelo/Pais")
+const Continente = require("../modelo/Continente")
+
+const desordenar = (array) => {
+    for (let i=0; i< array.length; i++) {
+        for (let j=0; j<array.length; j++) {
+            if (Math.round(Math.random() == 0)) {
+                const aux = array[i]
+                array[i] = array[j]
+                array[j] = aux
+            }
+        }
+    }
+}
 
 class Teg {
-
     constructor(jugadores) {
         this.jugadores = jugadores
         this.turno = new Turno()
-        this.paises = []
-        this.cartas = []
-        this.cartaActual = this.cartas[0]
+        this.paises = null
+        this.mazo = null
+        this.continentes = null
+        this.cartasGlobales = null
+        this.cartaActual = null
+        this.limites = null
+        this.objetivos = null
     }
 
     async iniciar() {
-        this.paises = await pais.find()
-        this.paises = this.paises.map(p => new Pais(p))
-        this.cartas = await cartas.find()
+        const continentes = await continente.find().populate('escudo')
+        this.continentes = continentes.map(c => new Continente(c))
+
+        const paises = await pais.find()
+                .populate('escudo')
+                .populate({ path: 'continente', 
+                        populate: {path: 'escudo'} 
+                })
+        this.paises = paises.map(p => new Pais(p))
+        this.mazo = [...this.paises]
+        desordenar(this.mazo)
+        this.cartasGlobales = await cartasGlobal.find()
+        desordenar(this.cartasGlobales)
+        this.cartaActual = this.cartasGlobales[0]
         for (let i = 0; i < this.paises.length; i++) {
             this.paises[i].jugador = this.jugadores[i % this.jugadores.length]
         }
+        this.limites = await limite.find()
+        desordenar(this.limites)
+        this.objetivos = await objetivo.find()
+        desordenar(this.objetivos)
     }
 
     accionSimple(jugador, numeroPais, misil) {
