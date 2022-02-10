@@ -19,6 +19,7 @@ const CartaGlobal = require("../db/cartaGlobal");
     try {
         await Promise.all([
             Usuario.deleteMany({}),
+            Limite.deleteMany(),
             Escudo.deleteMany({}),
             Continente.deleteMany({}),
             Pais.deleteMany({}),

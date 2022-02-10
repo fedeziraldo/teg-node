@@ -1,7 +1,6 @@
 class Continente {
-    constructor(nombre, valorFichas) {
-        this.nombre = nombre
-        this.valorFichas = valorFichas
+    constructor(continente) {
+        this.continente = continente
         this.jugadoresUsados = []
     }
 }

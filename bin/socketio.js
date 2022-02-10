@@ -23,7 +23,7 @@ const salirSala = (socket, user, ioSala) => {
         socket.join(SIN_SALA)
         user.nombreSala = SIN_SALA
         socket.emit("user", user)
-        ioSala.emit("salas", Object.keys(salas))
+        ioSala.emit("salas", salas)
     }
 }
 
@@ -40,7 +40,7 @@ const eliminarSala = (ioSala, user) => {
                 socket.emit("user", u)
             }
         })
-        ioSala.emit("salas", Object.keys(salas))
+        ioSala.emit("salas", salas)
         console.log(`usuario ${user.usuario.email} elimino su sala`)
     }
 }
@@ -58,7 +58,7 @@ const socketio = server => {
             if (user) {
                 console.log(`${user.usuario.email} disconnected`)
                 delete usersSala[socket.id]
-                ioSala.emit("jugadores", Object.keys(usersSala).map(j => usersSala[j].usuario.email))
+                ioSala.emit("usuarios", Object.keys(usersSala).map(j => usersSala[j].usuario.email))
 
                 // eliminar sala
                 eliminarSala(ioSala, user)
@@ -82,7 +82,7 @@ const socketio = server => {
                     user.juegos = Object.keys(juegos).filter(j => juegos[j].jugadores.map(ju => ju.nombre).includes(user.usuario.email))
                     socket.join(SIN_SALA)
                     socket.emit('loginCorrecto', user)
-                    socket.emit("salas", Object.keys(salas))
+                    socket.emit("salas", salas)
                     ioSala.emit("usuarios", Object.keys(usersSala).map(j => usersSala[j].usuario.email))
                 }
             } catch (e) {
@@ -112,7 +112,7 @@ const socketio = server => {
                     user.nombreSala = user.usuario.email
                     socket.leave(SIN_SALA)
                     socket.join(user.usuario.email)
-                    ioSala.emit("salas", Object.keys(salas))
+                    ioSala.emit("salas", salas)
                     socket.emit("user", user)
                     console.log(`usuario ${user.usuario.email} creo sala`)
                 }
@@ -129,7 +129,7 @@ const socketio = server => {
                     user.nombreSala = nombreSala
                     socket.leave(SIN_SALA)
                     socket.join(nombreSala)
-                    ioSala.emit("salas", Object.keys(salas))
+                    ioSala.emit("salas", salas)
                     socket.emit("user", user)
                     console.log(`usuario ${user.usuario.email} se unio a sala ${nombreSala}`)
                 }

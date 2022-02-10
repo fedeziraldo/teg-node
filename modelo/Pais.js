@@ -11,6 +11,7 @@ class Pais {
         this.limites = []
         this.fichasMoviles = this.fichas
         this.misilesMoviles = this.misiles
+        this.jugador = null
     }
 
     agregarFichas(fichas) {
