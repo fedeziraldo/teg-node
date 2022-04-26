@@ -1,9 +1,11 @@
 require('dotenv').config();
+require('jsonc-require');
 const bcrypt = require('bcrypt');
 const mongodb = require('../db/mongodb')
 let escudos = require("./escudos.json")
 let continentes = require("./continentes.json")
 let paises = require("./paises.json")
+let limites = require("./limites.jsonc")
 const cartas = require("./cartasGlobales.json")
 const objetivos = require("./objetivos.json")
 const Usuario = require('../db/usuario')
@@ -64,16 +66,15 @@ const CartaGlobal = require("../db/cartaGlobal");
         })
         paises = await Pais.insertMany(paises)
 
-        const limites= []
-        for (let pais of paises) {
-            for (let limite of paises) {
-                limites.push({pais, limite})
-            }
+        const limitesBase= []
+        for (let limite of limites) {
+            limitesBase.push({ pais1: paises[limite[0]], pais2: paises[limite[1]]})
+            limitesBase.push({ pais1: paises[limite[1]], pais2: paises[limite[0]]})
         }
 
         await Promise.all([
             Usuario.insertMany([fede, diego, rafa, negro, lau]),
-            Limite.insertMany(limites),
+            Limite.insertMany(limitesBase),
             CartaGlobal.insertMany(cartas),
             Objetivo.insertMany(objetivos),
         ])

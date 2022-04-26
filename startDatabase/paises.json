@@ -6,7 +6,9 @@
     "posX": 27,
     "posY": 49,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 2,
@@ -15,7 +17,9 @@
     "posX": 1046,
     "posY": 428,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 3,
@@ -24,7 +28,9 @@
     "posX": 836,
     "posY": 339,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 4,
@@ -44,7 +50,9 @@
     "posX": 1129,
     "posY": 628,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 6,
@@ -53,7 +61,9 @@
     "posX": 293,
     "posY": 954,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 7,
@@ -62,7 +72,9 @@
     "posX": 1224,
     "posY": 837,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 8,
@@ -71,7 +83,9 @@
     "posX": 981,
     "posY": 152,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 9,
@@ -80,7 +94,9 @@
     "posX": 260,
     "posY": 866,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 10,
@@ -89,7 +105,9 @@
     "posX": 252,
     "posY": 789,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 11,
@@ -98,7 +116,9 @@
     "posX": 58,
     "posY": 398,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 12,
@@ -107,7 +127,9 @@
     "posX": 67,
     "posY": 114,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 13,
@@ -116,7 +138,9 @@
     "posX": 176,
     "posY": 691,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 14,
@@ -125,7 +149,9 @@
     "posX": 1326,
     "posY": 327,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 15,
@@ -134,7 +160,9 @@
     "posX": 916,
     "posY": 490,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 16,
@@ -144,8 +172,8 @@
     "posY": 476,
     "escudo": 1,
     "continente": 1,
-    "width":200,
-    "height":100
+    "width": 200,
+    "height": 100
   },
   {
     "numero": 17,
@@ -154,7 +182,9 @@
     "posX": 1168,
     "posY": 136,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 18,
@@ -163,7 +193,9 @@
     "posX": 260,
     "posY": 277,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 19,
@@ -172,7 +204,9 @@
     "posX": 208,
     "posY": 818,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 20,
@@ -181,7 +215,9 @@
     "posX": 1231,
     "posY": 29,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 21,
@@ -190,7 +226,9 @@
     "posX": 1294,
     "posY": 54,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 22,
@@ -199,7 +237,9 @@
     "posX": 670,
     "posY": 320,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 23,
@@ -241,7 +281,9 @@
     "posX": 700,
     "posY": 543,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 27,
@@ -250,7 +292,9 @@
     "posX": 1340,
     "posY": 750,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 28,
@@ -259,7 +303,9 @@
     "posX": 919,
     "posY": 166,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 29,
@@ -268,7 +314,9 @@
     "posX": 787,
     "posY": 412,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 30,
@@ -277,7 +325,9 @@
     "posX": 663,
     "posY": 300,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 31,
@@ -286,7 +336,9 @@
     "posX": 416,
     "posY": 8,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 32,
@@ -295,7 +347,9 @@
     "posX": 241,
     "posY": 541,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 33,
@@ -304,7 +358,9 @@
     "posX": 1258,
     "posY": 552,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 34,
@@ -313,7 +369,9 @@
     "posX": 1057,
     "posY": 444,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 35,
@@ -322,7 +380,9 @@
     "posX": 1107,
     "posY": 363,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 36,
@@ -331,7 +391,9 @@
     "posX": 639,
     "posY": 172,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 37,
@@ -340,7 +402,9 @@
     "posX": 234,
     "posY": 48,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 38,
@@ -349,7 +413,9 @@
     "posX": 1089,
     "posY": 529,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 39,
@@ -358,7 +424,9 @@
     "posX": 854,
     "posY": 484,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 40,
@@ -367,7 +435,9 @@
     "posX": 396,
     "posY": 571,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 41,
@@ -376,7 +446,9 @@
     "posX": 1456,
     "posY": 256,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 42,
@@ -385,7 +457,9 @@
     "posX": 1306,
     "posY": 106,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 43,
@@ -394,7 +468,9 @@
     "posX": 221,
     "posY": 382,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 44,
@@ -403,7 +479,9 @@
     "posX": 344,
     "posY": 102,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 45,
@@ -412,7 +490,9 @@
     "posX": 65,
     "posY": 337,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 46,
@@ -432,7 +512,9 @@
     "posX": 1272,
     "posY": 455,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 48,
@@ -452,7 +534,9 @@
     "posX": 176,
     "posY": 477,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 50,
@@ -461,7 +545,9 @@
     "posX": 276,
     "posY": 623,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 51,
@@ -481,7 +567,9 @@
     "posX": 804,
     "posY": 145,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 53,
@@ -490,7 +578,9 @@
     "posX": 407,
     "posY": 190,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 54,
@@ -499,7 +589,9 @@
     "posX": 1233,
     "posY": 1074,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 55,
@@ -508,7 +600,9 @@
     "posX": 69,
     "posY": 243,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 56,
@@ -517,7 +611,9 @@
     "posX": 324,
     "posY": 892,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 57,
@@ -526,7 +622,9 @@
     "posX": 1037,
     "posY": 67,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 58,
@@ -535,7 +633,9 @@
     "posX": 677,
     "posY": 537,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 59,
@@ -544,7 +644,9 @@
     "posX": 1092,
     "posY": 41,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 60,
@@ -564,7 +666,9 @@
     "posX": 917,
     "posY": 416,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 62,
@@ -573,7 +677,9 @@
     "posX": 1162,
     "posY": 32,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 63,
@@ -593,7 +699,9 @@
     "posX": 1212,
     "posY": 770,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 65,
@@ -602,7 +710,9 @@
     "posX": 1343,
     "posY": 1037,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 66,
@@ -611,7 +721,9 @@
     "posX": 239,
     "posY": 177,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 67,
@@ -620,7 +732,9 @@
     "posX": 1486,
     "posY": 799,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 68,
@@ -629,7 +743,9 @@
     "posX": 1165,
     "posY": 468,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 69,
@@ -638,7 +754,9 @@
     "posX": 938,
     "posY": 238,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 70,
@@ -647,7 +765,9 @@
     "posX": 362,
     "posY": 985,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 71,
@@ -656,7 +776,9 @@
     "posX": 344,
     "posY": 715,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 72,
@@ -665,6 +787,8 @@
     "posX": 1342,
     "posY": 529,
     "escudo": 1,
-    "continente": 1
+    "continente": 1,
+    "width": 150,
+    "height": 150
   }
 ]

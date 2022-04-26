@@ -8,7 +8,6 @@ class Pais {
         this.pais = pais
         this.fichas = 1
         this.misiles = 0
-        this.limites = []
         this.fichasMoviles = this.fichas
         this.misilesMoviles = this.misiles
         this.jugador = null
@@ -50,18 +49,17 @@ class Pais {
         paisD.agregarMisil()
     }
 
-    agregarLimite(pais) {
-        this.limites.push(pais)
-        pais.limites.push(this)
+    limites(limites) {
+        return limites.filter(l => l.pais1 === this).map(l => l.pais2)
     }
 
-    limita(pais) {
-        return this.limites.includes(pais)
+    limita(limites, pais) {
+        return this.limites(limites).includes(pais)
     }
 
-    atacar(pais) {
+    atacar(limites, pais) {
         if (this.fichas <= 1) throw new Error(Pais.NO_HAY_SUFUCIENTES_FICHAS)
-        if (!this.limita(pais)) throw new Error(Pais.NO_LIMITA)
+        if (!this.limita(limites, pais)) throw new Error(Pais.NO_LIMITA)
         if (this.jugador == pais.jugador) throw new Error(Pais.MISMO_JUGADOR)
 
         const {cantVictorias, cantBatallas} = atacar(this.fichas, pais.fichas)
@@ -83,14 +81,14 @@ class Pais {
         }
     }
 
-    distancia(pais) {
+    distancia(limites, pais) {
         if (this == pais) return 0
-        else if (this.limita(pais)) return 1
-        else for (let lim of this.limites) 
-            if (lim.limita(pais)) return 2
-        else for (let lim of this.limites) 
-            for (let limlim of lim.limites) 
-                if (limlim.limita(pais)) return 3
+        else if (this.limita(limites, pais)) return 1
+        else for (let lim of this.limites(limites)) 
+            if (lim.limita(limites, pais)) return 2
+        else for (let lim of this.limites(limites)) 
+            for (let limlim of lim.limites(limites)) 
+                if (limlim.limita(limites, pais)) return 3
         throw new Error("muy lejos")
     }
     
@@ -102,12 +100,13 @@ class Pais {
         this.usarMisil()
     }
 
-    estaBloqueado() {
-        const jugadorBloqueante = this.limites[0].jugador
-        if (this.limites.length < 3 || this.jugador == jugadorBloqueante) {
+    estaBloqueado(limites) {
+        const thisLimites = this.limites(limites)
+        const jugadorBloqueante = thisLimites[0].jugador
+        if (thisLimites.length < 3 || this.jugador == jugadorBloqueante) {
             return false
         }
-        for (let limite of this.limites) {
+        for (let limite of thisLimites) {
             if (limite.fichas < 2 || limite.jugador != jugadorBloqueante) {
                 return false
             }
