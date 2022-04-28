@@ -37,18 +37,18 @@ class Teg {
         const continentes = await continente.find().populate('escudo')
         const paises = await pais.find()
                 .populate('escudo')
-                .populate({ path: 'continente', 
-                        populate: {path: 'escudo'} 
-                })
+                .populate('continente')
+                
+        this.paises = paises.map(p => new Pais(p))
         this.cartasGlobales = await cartasGlobal.find()
         const limites = await limite.find()
-        this.limites = limites.map(l => ({pais1: this.paises.find(p => p.pais == l.pais1), pais2: this.paises.find(p => p.pais == l.pais2)}))
+        this.limites = limites.map(l => ({pais1: this.paises.find(p => p.pais == l.pais1), 
+                                        pais2: this.paises.find(p => p.pais == l.pais2)}))
 
         this.objetivos = await objetivo.find()
 
         this.continentes = continentes.map(c => new Continente(c))
 
-        this.paises = paises.map(p => new Pais(p))
         this.mazo = [...this.paises]
         desordenar(this.mazo)
         desordenar(this.cartasGlobales)

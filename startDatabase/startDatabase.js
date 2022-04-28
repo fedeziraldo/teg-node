@@ -68,8 +68,10 @@ const CartaGlobal = require("../db/cartaGlobal");
 
         const limitesBase= []
         for (let limite of limites) {
-            limitesBase.push({ pais1: paises[limite[0]], pais2: paises[limite[1]]})
-            limitesBase.push({ pais1: paises[limite[1]], pais2: paises[limite[0]]})
+            const pais1 = paises[limite[0]-1]
+            const pais2 = paises[limite[1]-1]
+            limitesBase.push({ pais1, pais2 })
+            limitesBase.push({ pais1: pais2, pais2: pais1 })
         }
 
         await Promise.all([
