@@ -8,5 +8,5 @@ const continenteSchema = new Schema({
     escudo: { type: Schema.Types.ObjectId, ref: 'escudos' }
 })
 
-const Continente = model('continentes', continenteSchema)
-module.exports = Continente
+const continente = model('continentes', continenteSchema)
+module.exports = continente

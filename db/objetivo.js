@@ -23,8 +23,8 @@ objetivoSchema.methods.cumpleObjetivo = function (jugadorA, jugadorD, paisesDto,
     return objetivos[this.id - 1](jugadorA, jugadorD, paisesDto, continentesDto)
 }
 
-const Objetivo = model('objetivos', objetivoSchema)
-module.exports = Objetivo
+const objetivo = model('objetivos', objetivoSchema)
+module.exports = objetivo
 
 function europaAmSur(jugadorA, jugadorD, paisesDto, continentesDto) {
     if (jugadorA.conquistaContinente(paisesDto, continentesDto[5]) &&

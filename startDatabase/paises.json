@@ -5,8 +5,10 @@
     "archivo": "ALASKA.png",
     "posX": 27,
     "posY": 49,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 4,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 2,
@@ -14,8 +16,10 @@
     "archivo": "ALBANIA.png",
     "posX": 1046,
     "posY": 428,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 4,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 3,
@@ -23,8 +27,10 @@
     "archivo": "ALEMANIA.png",
     "posX": 836,
     "posY": 339,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 4,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 4,
@@ -32,7 +38,7 @@
     "archivo": "ANGOLA.png",
     "posX": 966,
     "posY": 809,
-    "escudo": 1,
+    "escudo": 4,
     "continente": 1,
     "width": 200,
     "height": 100
@@ -44,7 +50,9 @@
     "posX": 1129,
     "posY": 628,
     "escudo": 1,
-    "continente": 1
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 6,
@@ -52,8 +60,10 @@
     "archivo": "ARGENTINA.png",
     "posX": 293,
     "posY": 954,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 5,
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 7,
@@ -62,7 +72,9 @@
     "posX": 1224,
     "posY": 837,
     "escudo": 1,
-    "continente": 1
+    "continente": 7,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 8,
@@ -71,7 +83,9 @@
     "posX": 981,
     "posY": 152,
     "escudo": 1,
-    "continente": 1
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 9,
@@ -80,7 +94,9 @@
     "posX": 260,
     "posY": 866,
     "escudo": 1,
-    "continente": 1
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 10,
@@ -89,7 +105,9 @@
     "posX": 252,
     "posY": 789,
     "escudo": 1,
-    "continente": 1
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 11,
@@ -98,7 +116,9 @@
     "posX": 58,
     "posY": 398,
     "escudo": 1,
-    "continente": 1
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 12,
@@ -107,7 +127,9 @@
     "posX": 67,
     "posY": 114,
     "escudo": 1,
-    "continente": 1
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 13,
@@ -116,7 +138,9 @@
     "posX": 176,
     "posY": 691,
     "escudo": 1,
-    "continente": 1
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 14,
@@ -125,7 +149,9 @@
     "posX": 1326,
     "posY": 327,
     "escudo": 1,
-    "continente": 1
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 15,
@@ -134,7 +160,9 @@
     "posX": 916,
     "posY": 490,
     "escudo": 1,
-    "continente": 1
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 16,
@@ -143,9 +171,9 @@
     "posX": 320,
     "posY": 476,
     "escudo": 1,
-    "continente": 1,
-    "width":200,
-    "height":100
+    "continente": 2,
+    "width": 200,
+    "height": 100
   },
   {
     "numero": 17,
@@ -153,8 +181,10 @@
     "archivo": "CHECHENIA.png",
     "posX": 1168,
     "posY": 136,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 5,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 18,
@@ -163,7 +193,9 @@
     "posX": 260,
     "posY": 277,
     "escudo": 1,
-    "continente": 1
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 19,
@@ -172,7 +204,9 @@
     "posX": 208,
     "posY": 818,
     "escudo": 1,
-    "continente": 1
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 20,
@@ -181,7 +215,9 @@
     "posX": 1231,
     "posY": 29,
     "escudo": 1,
-    "continente": 1
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 21,
@@ -190,7 +226,9 @@
     "posX": 1294,
     "posY": 54,
     "escudo": 1,
-    "continente": 1
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 22,
@@ -199,7 +237,9 @@
     "posX": 670,
     "posY": 320,
     "escudo": 1,
-    "continente": 1
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 23,
@@ -230,7 +270,7 @@
     "posX": 273,
     "posY": 572,
     "escudo": 1,
-    "continente": 1,
+    "continente": 2,
     "width": 100,
     "height": 100
   },
@@ -241,7 +281,9 @@
     "posX": 700,
     "posY": 543,
     "escudo": 1,
-    "continente": 1
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 27,
@@ -250,7 +292,9 @@
     "posX": 1340,
     "posY": 750,
     "escudo": 1,
-    "continente": 1
+    "continente": 7,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 28,
@@ -258,8 +302,10 @@
     "archivo": "FINLANDIA.png",
     "posX": 919,
     "posY": 166,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 29,
@@ -267,8 +313,10 @@
     "archivo": "FRANCIA.png",
     "posX": 787,
     "posY": 412,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 30,
@@ -276,8 +324,10 @@
     "archivo": "GRAN_BRETANA.png",
     "posX": 663,
     "posY": 300,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 31,
@@ -285,8 +335,10 @@
     "archivo": "GROENLANDIA.png",
     "posX": 416,
     "posY": 8,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 32,
@@ -294,8 +346,10 @@
     "archivo": "HONDURAS.png",
     "posX": 241,
     "posY": 541,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 2,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 33,
@@ -303,8 +357,10 @@
     "archivo": "INDIA.png",
     "posX": 1258,
     "posY": 552,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 34,
@@ -312,8 +368,10 @@
     "archivo": "IRAK.png",
     "posX": 1057,
     "posY": 444,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 35,
@@ -321,8 +379,10 @@
     "archivo": "IRAN.png",
     "posX": 1107,
     "posY": 363,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 36,
@@ -330,17 +390,21 @@
     "archivo": "ISLANDIA.png",
     "posX": 639,
     "posY": 172,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 37,
-    "nombre": "Isla Victoria ",
+    "nombre": "Isla Victoria",
     "archivo": "ISLA_VICTORIA.png",
     "posX": 234,
     "posY": 48,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 38,
@@ -348,8 +412,10 @@
     "archivo": "ISRAEL.png",
     "posX": 1089,
     "posY": 529,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 39,
@@ -357,8 +423,10 @@
     "archivo": "ITALIA.png",
     "posX": 854,
     "posY": 484,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 40,
@@ -366,8 +434,10 @@
     "archivo": "JAMAICA.png",
     "posX": 396,
     "posY": 571,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 2,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 41,
@@ -375,8 +445,10 @@
     "archivo": "JAPON.png",
     "posX": 1456,
     "posY": 256,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 42,
@@ -384,8 +456,10 @@
     "archivo": "KAMCHATKA.png",
     "posX": 1306,
     "posY": 106,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 43,
@@ -393,8 +467,10 @@
     "archivo": "FLORIDA.png",
     "posX": 221,
     "posY": 382,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 44,
@@ -402,8 +478,10 @@
     "archivo": "LABRADOR.png",
     "posX": 344,
     "posY": 102,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 45,
@@ -411,8 +489,10 @@
     "archivo": "LAS_VEGAS.png",
     "posX": 65,
     "posY": 337,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 5,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 46,
@@ -420,7 +500,7 @@
     "archivo": "MADAGASCAR.png",
     "posX": 1022,
     "posY": 894,
-    "escudo": 1,
+    "escudo": 3,
     "continente": 1,
     "width": 150,
     "height": 150
@@ -431,8 +511,10 @@
     "archivo": "MALASIA.png",
     "posX": 1272,
     "posY": 455,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 48,
@@ -440,7 +522,7 @@
     "archivo": "MAURITANIA.png",
     "posX": 959,
     "posY": 863,
-    "escudo": 1,
+    "escudo": 5,
     "continente": 1,
     "width": 150,
     "height": 150
@@ -451,8 +533,10 @@
     "archivo": "MEXICO.png",
     "posX": 176,
     "posY": 477,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 2,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 50,
@@ -460,8 +544,10 @@
     "archivo": "NICARAGUA.png",
     "posX": 276,
     "posY": 623,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 3,
+    "continente": 2,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 51,
@@ -469,7 +555,7 @@
     "archivo": "NIGERIA.png",
     "posX": 761,
     "posY": 828,
-    "escudo": 1,
+    "escudo": 2,
     "continente": 1,
     "width": 250,
     "height": 150
@@ -480,8 +566,10 @@
     "archivo": "NORUEGA.png",
     "posX": 804,
     "posY": 145,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 53,
@@ -489,8 +577,10 @@
     "archivo": "NUEVA_YORK.png",
     "posX": 407,
     "posY": 190,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 54,
@@ -498,8 +588,10 @@
     "archivo": "NUEVA_ZELANDIA.png",
     "posX": 1233,
     "posY": 1074,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 7,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 55,
@@ -507,8 +599,10 @@
     "archivo": "OREGON.png",
     "posX": 69,
     "posY": 243,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 56,
@@ -516,8 +610,10 @@
     "archivo": "PARAGUAY.png",
     "posX": 324,
     "posY": 892,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 57,
@@ -525,8 +621,10 @@
     "archivo": "UCRANIA.png",
     "posX": 1037,
     "posY": 67,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 5,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 58,
@@ -534,8 +632,10 @@
     "archivo": "PORTUGAL.png",
     "posX": 677,
     "posY": 537,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 59,
@@ -543,8 +643,10 @@
     "archivo": "RUSIA.png",
     "posX": 1092,
     "posY": 41,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 60,
@@ -552,7 +654,7 @@
     "archivo": "SAHARA.png",
     "posX": 677,
     "posY": 661,
-    "escudo": 1,
+    "escudo": 2,
     "continente": 1,
     "width": 250,
     "height": 250
@@ -563,8 +665,10 @@
     "archivo": "SERBIA.png",
     "posX": 917,
     "posY": 416,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 62,
@@ -572,8 +676,10 @@
     "archivo": "SIBERIA.png",
     "posX": 1162,
     "posY": 32,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 63,
@@ -581,7 +687,7 @@
     "archivo": "SUDAFRICA.png",
     "posX": 908,
     "posY": 932,
-    "escudo": 1,
+    "escudo": 2,
     "continente": 1,
     "width": 150,
     "height": 150
@@ -592,8 +698,10 @@
     "archivo": "SUMATRA.png",
     "posX": 1212,
     "posY": 770,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 7,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 65,
@@ -601,8 +709,10 @@
     "archivo": "TASMANIA.png",
     "posX": 1343,
     "posY": 1037,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 7,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 66,
@@ -610,8 +720,10 @@
     "archivo": "TERRANOVA.png",
     "posX": 239,
     "posY": 177,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 3,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 67,
@@ -619,8 +731,10 @@
     "archivo": "TONGA.png",
     "posX": 1486,
     "posY": 799,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 7,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 68,
@@ -628,8 +742,10 @@
     "archivo": "TURQUIA.png",
     "posX": 1165,
     "posY": 468,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 69,
@@ -637,8 +753,10 @@
     "archivo": "POLONIA.png",
     "posX": 938,
     "posY": 238,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 6,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 70,
@@ -646,8 +764,10 @@
     "archivo": "URUGUAY.png",
     "posX": 362,
     "posY": 985,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 71,
@@ -655,8 +775,10 @@
     "archivo": "VENEZUELA.png",
     "posX": 344,
     "posY": 715,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 4,
+    "width": 150,
+    "height": 150
   },
   {
     "numero": 72,
@@ -664,7 +786,9 @@
     "archivo": "VIETNAM.png",
     "posX": 1342,
     "posY": 529,
-    "escudo": 1,
-    "continente": 1
+    "escudo": 2,
+    "continente": 5,
+    "width": 150,
+    "height": 150
   }
 ]

@@ -7,6 +7,6 @@ const EscudoSchema = new Schema({
     valor: Array
 })
 
-const Escudo = mongodb.model('escudos', EscudoSchema)
+const escudo = mongodb.model('escudos', EscudoSchema)
 
-module.exports = Escudo
+module.exports = escudo

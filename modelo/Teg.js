@@ -2,7 +2,7 @@ const Turno = require("./Turno")
 require("../db/escudo")
 const pais = require("../db/pais")
 const continente = require("../db/continente")
-const cartasGlobal = require("../db/cartaGlobal")
+const cartaGlobal = require("../db/cartaGlobal")
 const limite = require("../db/limite")
 const objetivo = require("../db/objetivo")
 const Pais = require("../modelo/Pais")
@@ -35,26 +35,29 @@ class Teg {
 
     async iniciar() {
         const continentes = await continente.find().populate('escudo')
-        this.continentes = continentes.map(c => new Continente(c))
-
         const paises = await pais.find()
                 .populate('escudo')
-                .populate({ path: 'continente', 
-                        populate: {path: 'escudo'} 
-                })
+                .populate('continente')
+                
         this.paises = paises.map(p => new Pais(p))
+        this.cartasGlobales = await cartaGlobal.find()
+        const limites = await limite.find()
+        this.limites = limites.map(l => ({pais1: this.paises.find(p => p.pais == l.pais1), 
+                                        pais2: this.paises.find(p => p.pais == l.pais2)}))
+
+        this.objetivos = await objetivo.find()
+
+        this.continentes = continentes.map(c => new Continente(c))
+
         this.mazo = [...this.paises]
         desordenar(this.mazo)
-        this.cartasGlobales = await cartasGlobal.find()
         desordenar(this.cartasGlobales)
+        desordenar(this.objetivos)
+
         this.cartaActual = this.cartasGlobales[0]
         for (let i = 0; i < this.paises.length; i++) {
             this.paises[i].jugador = this.jugadores[i % this.jugadores.length]
         }
-        this.limites = await limite.find()
-        desordenar(this.limites)
-        this.objetivos = await objetivo.find()
-        desordenar(this.objetivos)
     }
 
     accionSimple(jugador, numeroPais, misil) {

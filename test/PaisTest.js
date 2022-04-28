@@ -127,10 +127,10 @@ const testLimita = () => {
   const paisO = new Pais()
   const paisD = new Pais()
 
-  paisO.agregarLimite(paisD)
+  const limites = [{pais1: paisO, pais2: paisD}, {pais1: paisD, pais2: paisO}]
 
-  assert(paisO.limita(paisD))
-  assert(paisD.limita(paisO))
+  assert(paisO.limita(limites, paisD))
+  assert(paisD.limita(limites, paisO))
 }
 testLimita()
 
@@ -141,21 +141,21 @@ const testAtacar = () => {
   const paisO = new Pais()
   const paisD = new Pais()
 
-  assert.throws(() => paisO.atacar(paisD), {
+  const limites = [{pais1: paisO, pais2: paisD}, {pais1: paisD, pais2: paisO}]
+
+  assert.throws(() => paisO.atacar(limites, paisD), {
     name: 'Error',
     message: Pais.NO_HAY_SUFUCIENTES_FICHAS,
   })
 
   paisO.agregarFichas(5)
   paisD.agregarFichas(5)
-  assert.throws(() => paisO.atacar(paisD), {
+  assert.throws(() => paisO.atacar([], paisD), {
     name: 'Error',
     message: Pais.NO_LIMITA,
   })
 
-  paisO.agregarLimite(paisD)
-
-  assert.throws(() => paisO.atacar(paisD), {
+  assert.throws(() => paisO.atacar(limites, paisD), {
     name: 'Error',
     message: Pais.MISMO_JUGADOR,
   })
@@ -163,7 +163,7 @@ const testAtacar = () => {
   paisO.jugador = new Jugador("fede", 0)
   paisD.jugador = new Jugador("diego", 1)
 
-  assert(!paisO.atacar(paisD))
+  assert(!paisO.atacar(limites, paisD))
   assert(paisO.fichas >= 3 && paisO.fichas <= 6)
   assert(paisD.fichas >= 3 && paisD.fichas <= 6)
   assert.deepEqual(paisO.fichas + paisD.fichas, 9)
@@ -177,14 +177,14 @@ const testCapturarPais = () => {
   const paisO = new Pais()
   const paisD = new Pais()
 
+  const limites = [{pais1: paisO, pais2: paisD}, {pais1: paisD, pais2: paisO}]
+
   paisO.jugador = new Jugador("fede", 0)
   paisD.jugador = new Jugador("diego", 1)
 
   paisO.agregarFichas(5)
 
-  paisO.agregarLimite(paisD)
-
-  if (paisO.atacar(paisD)) {
+  if (paisO.atacar(limites, paisD)) {
     assert(paisD.jugador == paisO.jugador)
     assert.deepEqual(paisD.fichas, 1)
   } else {
@@ -200,10 +200,10 @@ const testDistancia = () => {
   const paisO = new Pais()
   const paisD = new Pais()
 
-  paisO.agregarLimite(paisD)
+  const limites = [{pais1: paisO, pais2: paisD}, {pais1: paisD, pais2: paisO}]
 
-  assert.deepEqual(paisO.distancia(paisD), 1)
-  assert.deepEqual(paisD.distancia(paisO), 1)
+  assert.deepEqual(paisO.distancia(limites, paisD), 1)
+  assert.deepEqual(paisD.distancia(limites, paisO), 1)
 }
 testDistancia()
 
@@ -214,9 +214,9 @@ testDistancia()
   const paisO = new Pais()
   const paisD = new Pais()
 
-  paisO.agregarLimite(paisD)
+  const limites = [{pais1: paisO, pais2: paisD}, {pais1: paisD, pais2: paisO}]
 
-  assert(!paisO.estaBloqueado())
-  assert(!paisD.estaBloqueado())
+  assert(!paisO.estaBloqueado(limites))
+  assert(!paisD.estaBloqueado(limites))
 }
 testBloqueado()

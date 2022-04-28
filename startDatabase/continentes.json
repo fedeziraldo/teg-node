@@ -3,7 +3,7 @@
         "numero": 1,
         "nombre": "Africa",
         "fichas": 4,
-        "escudo": 1
+        "escudo": 7
     },
     {
         "numero": 2,
@@ -15,30 +15,30 @@
         "numero": 3,
         "nombre": "America del Norte",
         "fichas": 6,
-        "escudo": 1
+        "escudo": 5
     },
     {
         "numero": 4,
         "nombre": "America del Sur",
         "fichas": 4,
-        "escudo": 1
+        "escudo": 6
     },
     {
         "numero": 5,
         "nombre": "Asia",
         "fichas": 8,
-        "escudo": 1
+        "escudo": 5
     },
     {
         "numero": 6,
         "nombre": "Europa",
         "fichas": 8,
-        "escudo": 1
+        "escudo": 5
     },
     {
         "numero": 7,
         "nombre": "Oceania",
         "fichas": 3,
-        "escudo": 1
+        "escudo": 2
     }
 ]
