@@ -13,6 +13,6 @@ UsuarioSchema.pre('save', function(next){
     next()
 })
 
-const Usuario = model('usuarios', UsuarioSchema)
+const usuario = model('usuarios', UsuarioSchema)
 
-module.exports = Usuario
+module.exports = usuario

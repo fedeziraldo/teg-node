@@ -2,7 +2,7 @@ const Turno = require("./Turno")
 require("../db/escudo")
 const pais = require("../db/pais")
 const continente = require("../db/continente")
-const cartasGlobal = require("../db/cartaGlobal")
+const cartaGlobal = require("../db/cartaGlobal")
 const limite = require("../db/limite")
 const objetivo = require("../db/objetivo")
 const Pais = require("../modelo/Pais")
@@ -40,7 +40,7 @@ class Teg {
                 .populate('continente')
                 
         this.paises = paises.map(p => new Pais(p))
-        this.cartasGlobales = await cartasGlobal.find()
+        this.cartasGlobales = await cartaGlobal.find()
         const limites = await limite.find()
         this.limites = limites.map(l => ({pais1: this.paises.find(p => p.pais == l.pais1), 
                                         pais2: this.paises.find(p => p.pais == l.pais2)}))

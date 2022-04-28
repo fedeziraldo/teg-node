@@ -6,6 +6,6 @@ const limiteSchema = new Schema({
     pais2: { type: Schema.Types.ObjectId, ref: 'paises' }
 })
 
-const Limite = model('limites', limiteSchema)
+const limite = model('limites', limiteSchema)
 
-module.exports = Limite
+module.exports = limite

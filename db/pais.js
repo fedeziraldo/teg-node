@@ -13,5 +13,5 @@ const paisSchema = new Schema({
     escudo: { type: Schema.Types.ObjectId, ref: 'escudos' },
 })
 
-const Pais = model('paises', paisSchema)
-module.exports = Pais
+const pais = model('paises', paisSchema)
+module.exports = pais

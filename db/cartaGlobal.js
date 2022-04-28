@@ -13,6 +13,6 @@ const cartaGlobalSchema = new Schema({
     color: String
 })
 
-const CartaGlobal = model('cartaglobales', cartaGlobalSchema)
+const cartaGlobal = model('cartaglobales', cartaGlobalSchema)
 
-module.exports = CartaGlobal
+module.exports = cartaGlobal
