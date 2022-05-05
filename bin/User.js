@@ -4,6 +4,7 @@ class User {
         this.usuario = usuario
         this.nombreSala = nombreSala
         this.numero = 0
+        this.juegos = null
     }
 }
 

@@ -148,9 +148,9 @@ const socketio = server => {
         })
 
         socket.on('eliminarSala', () => {
-            const jugador = usersSala[socket.id]
-            if (jugador) {
-                eliminarSala(ioSala, jugador)
+            const user = usersSala[socket.id]
+            if (user) {
+                eliminarSala(ioSala, user)
             } else {
                 socket.emit('loginIncorrecto')
             }
@@ -234,11 +234,23 @@ const socketio = server => {
             }
         })
 
-        socket.on('accionDoble', (numeroPaisO, numeroPaisD) => {
+        socket.on('accionDoble', (numeroPaisO, numeroPaisD, misil) => {
             const jugador = jugadoresMapa[socket.id]
             try {
                 const juego = juegos[jugador.nombreSala]
-                juego.accionDoble(jugador, numeroPaisO, numeroPaisD)
+                juego.accionDoble(jugador, numeroPaisO, numeroPaisD, misil)
+                ioMapa.to(jugador.nombreSala).emit("juego", juego)
+            } catch (e) {
+                socket.emit('jugadaInvalida', e.message)
+            }
+        })
+
+        socket.on('accionCanje', (tarjetas) => {
+            const jugador = jugadoresMapa[socket.id]
+            try {
+                const juego = juegos[jugador.nombreSala]
+                juego.accionCanje(jugador, tarjetas)
+                socket.emit('loginCorrecto', jugador)
                 ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
                 socket.emit('jugadaInvalida', e.message)
@@ -250,6 +262,7 @@ const socketio = server => {
             try {
                 const juego = juegos[jugador.nombreSala]
                 juego.accionTerminarTurno(jugador)
+                socket.emit('loginCorrecto', jugador)
                 ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
                 socket.emit('jugadaInvalida', e.message)
