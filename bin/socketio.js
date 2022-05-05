@@ -148,9 +148,9 @@ const socketio = server => {
         })
 
         socket.on('eliminarSala', () => {
-            const jugador = usersSala[socket.id]
-            if (jugador) {
-                eliminarSala(ioSala, jugador)
+            const user = usersSala[socket.id]
+            if (user) {
+                eliminarSala(ioSala, user)
             } else {
                 socket.emit('loginIncorrecto')
             }
@@ -250,6 +250,7 @@ const socketio = server => {
             try {
                 const juego = juegos[jugador.nombreSala]
                 juego.accionTerminarTurno(jugador)
+                socket.emit('loginCorrecto', jugador)
                 ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
                 socket.emit('jugadaInvalida', e.message)

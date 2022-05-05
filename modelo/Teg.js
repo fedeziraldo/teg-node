@@ -81,7 +81,7 @@ class Teg {
         if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         if (paisO.jugador != jugador) throw new Error("no es tu pais")
         if (this.turno.faseJuego) {
-            if (paisO.atacar(paisD)) jugador.cumpleObjetivo()
+            if (paisO.atacar(this.limites, paisD)) jugador.cumpleObjetivo()
         }
         if (this.turno.faseReagrupe) {
             paisO.transferirFichas(1, paisD)
@@ -98,10 +98,14 @@ class Teg {
     accionTerminarTurno(jugador) {
         if (!this.turno.validarJugador(jugador, this.jugadores)) throw new Error("No es turno del jugador")
         this.turno.avanzarTurno(this.jugadores)
-        if (this.turno.fase4) {
+        if (this.turno.fase8) {
+            jugador.fichasRestantes = 8
+        } else if (this.turno.fase4) {
             jugador.fichasRestantes = 4
         } else if (this.turno.faseRefuerzos) {
             jugador.fichasRestantes = Math.floor(this.paises.filter(p => p.jugador == jugador).length / 2)
+        } else {
+            jugador.fichasRestantes = 0
         }
     }
 }
