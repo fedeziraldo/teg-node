@@ -10,21 +10,31 @@ class Jugador {
         this.tarjetasContinente = []
         this.cantCanjes = 0
         this.paisesCapturadosRonda = 0
-        this.fichasRestantes = 8
+        this.fichasRestantes = 0
+        this.objetivo = null
     }
 
     puedeSacarTarjeta() {
         return this.paisesCapturadosRonda > 1 || this.canjes < 3 && this.paisesCapturadosRonda > 0
     }
 
-    puedeCanjear(tarjetas) {
-        for (var tarjeta of tarjetas) {
-            if (!this.tarjetas.includes(tarjeta)) throw new Error("Tarjetas son no del jugador")
+    puedeCanjear(tarjetasPais, tarjetasContinente) {
+        for (var tarjeta of tarjetasPais) {
+            if (!this.tarjetasPais.includes(tarjeta)) throw new Error("Tarjetas son no del jugador")
+        }
+        for (var tarjeta of tarjetasContinente) {
+            if (!this.tarjetasContinente.includes(tarjeta)) throw new Error("Tarjetas son no del jugador")
         }
 
-        const valores = tarjetas.map(t => t.escudo.valor)
+        const valores = [...tarjetasPais.map(t => t.escudo.valor), ...tarjetasContinente.map(t => t.escudo.valor)]
 
-        return valores.length < 4 && valores.reduce(sum, 0) == 7
+        return valores.length == 3 && valores[0] == valores[1] && valores[0] == valores[2]
+                || valores.length < 4 && valores.reduce(sum, 0) == 7
+    }
+
+    canjear(tarjetas) {
+        this.fichasRestantes += this.getCantFichasCanje()
+        this.cantCanjes++
     }
 
     getCantFichasCanje() {

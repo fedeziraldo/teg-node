@@ -83,18 +83,18 @@ class Pais {
 
     distancia(limites, pais) {
         if (this == pais) return 0
-        else if (this.limita(limites, pais)) return 1
-        else for (let lim of this.limites(limites)) 
+        if (this.limita(limites, pais)) return 1
+        for (let lim of this.limites(limites)) 
             if (lim.limita(limites, pais)) return 2
-        else for (let lim of this.limites(limites)) 
+        for (let lim of this.limites(limites)) 
             for (let limlim of lim.limites(limites)) 
                 if (limlim.limita(limites, pais)) return 3
         throw new Error("muy lejos")
     }
     
-    lanzarMisil(pais) {
+    lanzarMisil(limites, pais) {
         if (this.misiles <= pais.misiles) throw new Error(Pais.NO_HAY_MISILES)
-        const danoMisil = Pais.DANO_MAXIMO_MISIL - this.distancia(pais) + 1
+        const danoMisil = Pais.DANO_MAXIMO_MISIL - this.distancia(limites, pais) + 1
 
         pais.agregarFichas(-danoMisil)
         this.usarMisil()

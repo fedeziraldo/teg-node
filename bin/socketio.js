@@ -234,11 +234,23 @@ const socketio = server => {
             }
         })
 
-        socket.on('accionDoble', (numeroPaisO, numeroPaisD) => {
+        socket.on('accionDoble', (numeroPaisO, numeroPaisD, misil) => {
             const jugador = jugadoresMapa[socket.id]
             try {
                 const juego = juegos[jugador.nombreSala]
-                juego.accionDoble(jugador, numeroPaisO, numeroPaisD)
+                juego.accionDoble(jugador, numeroPaisO, numeroPaisD, misil)
+                ioMapa.to(jugador.nombreSala).emit("juego", juego)
+            } catch (e) {
+                socket.emit('jugadaInvalida', e.message)
+            }
+        })
+
+        socket.on('accionCanje', (tarjetas) => {
+            const jugador = jugadoresMapa[socket.id]
+            try {
+                const juego = juegos[jugador.nombreSala]
+                juego.accionCanje(jugador, tarjetas)
+                socket.emit('loginCorrecto', jugador)
                 ioMapa.to(jugador.nombreSala).emit("juego", juego)
             } catch (e) {
                 socket.emit('jugadaInvalida', e.message)
