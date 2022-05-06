@@ -33,20 +33,19 @@ class Teg {
     }
 
     async iniciar() {
-        const continentes = await continente.find().populate('escudo')
-        const paises = await pais.find()
-                .populate('escudo')
-                .populate('continente')
+        const [continentes, paises, limites, cartasGlobales, objetivos] = await Promise.all([
+            continente.find().populate('escudo'),
+            pais.find().populate('escudo').populate('continente'),
+            limite.find().populate('pais1').populate('pais2'),
+            cartaGlobal.find(),
+            objetivo.find(),
+        ])
                 
         this.paises = paises.map(p => new Pais(p))
-        this.cartasGlobales = await cartaGlobal.find()
-        const limites = await limite.find()
-                .populate('pais1')
-                .populate('pais2')
+        this.cartasGlobales = cartasGlobales
+        this.cartaActual = cartasGlobales.pop()
         this.limites = limites.map(l => ({pais1: this.paises[l.pais1.numero -1], 
                                         pais2: this.paises[l.pais2.numero - 1]}))
-
-        const objetivos = await objetivo.find()
 
         this.continentes = continentes.map(c => new Continente(c))
 
@@ -130,7 +129,7 @@ class Teg {
     }
 
     cartasDelJugador(jugador) {
-        this.paises.filter(p => p.jugador == jugador).length
+        return this.paises.filter(p => p.jugador == jugador).length
     }
 }
 

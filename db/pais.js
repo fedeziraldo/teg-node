@@ -7,8 +7,6 @@ const paisSchema = new Schema({
     archivo: String,
     posX: Number,
     posY: Number,
-    width: Number,
-    height: Number,
     continente: { type: Schema.Types.ObjectId, ref: 'continentes' },
     escudo: { type: Schema.Types.ObjectId, ref: 'escudos' },
 })
